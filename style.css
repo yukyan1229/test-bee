@@ -36,6 +36,7 @@ body {
     opacity: 0;
     /* For fade-in on load */
     transition: opacity 0.5s ease;
+    padding-bottom: 1rem;
 }
 
 body.loaded {
@@ -67,8 +68,9 @@ header {
 
 main {
     margin-top: 60px;
-    padding: 2rem;
+    padding: 5rem;
     min-height: calc(100vh - 100px);
+    overflow: hidden;
 }
 
 .rainbow-border {
@@ -106,12 +108,12 @@ main {
 
 footer {
     text-align: center;
-    padding: 1rem;
     background-color: transparent;
     color: #000;
     font-size: 0.8rem;
     position: relative;
     z-index: 1;
+    overflow: hidden;
 }
 
 /* Typography */
@@ -329,7 +331,7 @@ h3 {
     }
 
     main {
-        padding: 1rem;
+        padding: 2.5rem;
     }
 }
 
