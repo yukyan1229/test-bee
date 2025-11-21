@@ -1,0 +1,429 @@
+:root {
+    /* Color Palette - Adjusted for contrast with both white and black text */
+    --color-orange: #FF8C00;
+    /* Darker Orange */
+    --color-pink: #FFB6C1;
+    /* Light Pink (Paler as requested) */
+    --color-blue: #1E90FF;
+    /* Dodger Blue */
+    --color-yellow: #FFD700;
+    /* Gold (Hard to balance, but better than pale yellow) */
+    --color-green: #32CD32;
+    /* Lime Green */
+    --color-red: #FF4500;
+    /* Orange Red */
+    --color-gray: #808080;
+    /* Gray */
+
+    --bg-color: #FFFFFF;
+    --text-color: #333333;
+
+    --font-title: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --font-body: 'Zen Kaku Gothic New', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+    opacity: 0;
+    /* For fade-in on load */
+    transition: opacity 0.5s ease;
+}
+
+body.loaded {
+    opacity: 1;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+/* Layout */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #000;
+    color: #fff;
+    font-family: var(--font-title);
+    font-weight: bold;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+main {
+    margin-top: 60px;
+    padding: 2rem;
+    min-height: calc(100vh - 100px);
+}
+
+.rainbow-border {
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    right: -6px;
+    bottom: -6px;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, #ff0000, #ffa500, #ffff00, #008000, #0000ff, #4b0082, #ee82ee, #ff0000);
+    z-index: 1;
+    /* On top of parent background */
+    animation: spin 2s linear infinite;
+    pointer-events: none;
+
+    /* Create a 1px ring with transparent center using mask */
+    padding: 1px;
+    /* Width of the ring */
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: transparent;
+    color: #000;
+    font-size: 0.8rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* Typography */
+h1,
+h2,
+h3 {
+    font-family: var(--font-title);
+}
+
+/* Transition Overlay */
+#transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+.transition-circle {
+    position: absolute;
+    border-radius: 50%;
+    /* Initial transform is set by JS */
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    /* Ease-out for "pop" effect */
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.transition-circle.expand {
+    transform: translate(-50%, -50%) scale(300);
+    /* Expand to cover screen */
+}
+
+/* Fade Overlay */
+.fade-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+}
+
+.fade-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Circle Button Styles */
+.circle-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transition: transform 0.3s ease;
+    margin: 10px;
+}
+
+.circle-btn:hover {
+    transform: scale(1.2);
+}
+
+.circle-btn .date {
+    position: absolute;
+    font-size: 0.8rem;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+}
+
+.circle-btn:hover .date {
+    opacity: 1;
+}
+
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Orbit Header Styles */
+.orbit-header-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.central-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: var(--color-orange);
+    /* Default, overridden inline */
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: #fff;
+    font-size: 1.2rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.orbit-rotator {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    animation: orbit-spin 20s linear infinite;
+}
+
+.orbit-header-container:hover .orbit-rotator {
+    animation-play-state: paused;
+}
+
+.orbit-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60px;
+    height: 60px;
+    margin-top: -30px;
+    margin-left: -30px;
+    pointer-events: auto;
+    /* Ensure wrapper captures events if needed, though anchor is inside */
+}
+
+.orbit-item {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+    background-color: #fff;
+    /* Fallback */
+    position: relative;
+    z-index: 1;
+}
+
+.orbit-item:hover {
+    transform: scale(1.5);
+    z-index: 20;
+    cursor: pointer;
+}
+
+/* Counter-rotate items to keep them upright */
+.orbit-item-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: orbit-spin-reverse 20s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.orbit-item:hover .orbit-item-content {
+    opacity: 1;
+}
+
+.orbit-header-container:hover .orbit-item-content {
+    animation-play-state: paused;
+}
+
+@keyframes orbit-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes orbit-spin-reverse {
+    from {
+        transform: rotate(360deg);
+    }
+
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    header {
+        padding: 1rem;
+    }
+
+    main {
+        padding: 1rem;
+    }
+}
+
+/* Popup Navigation Styles */
+
+/* Pizza Slice Trigger (Now Semicircle) */
+.orbit-trigger {
+    position: fixed;
+    top: 26px;
+    /* Header (76px) - Half Height (50px) = 26px */
+    left: 20px;
+    width: 100px;
+    height: 100px;
+    /* background-color set inline */
+    border-radius: 50%;
+    /* Full circle */
+    cursor: pointer;
+    z-index: 900;
+    /* Behind header (1000) */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+@keyframes menu-stylish {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.orbit-trigger:hover {
+    animation: menu-stylish 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    /* Smooth ease-out */
+}
+
+.orbit-trigger-icon {
+    position: absolute;
+    bottom: 20px;
+    /* Position in the visible bottom half */
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    font-weight: bold;
+    font-size: 1rem;
+    pointer-events: none;
+}
+
+/* Modal Overlay */
+.orbit-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    z-index: 3000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    backdrop-filter: blur(5px);
+}
+
+.orbit-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Adjust Orbit Container for Modal */
+.orbit-modal .orbit-header-container {
+    margin: 0;
+    /* Remove default margin */
+    transform: scale(0.8);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.orbit-modal.active .orbit-header-container {
+    transform: scale(1);
+}
+
+/* Close Button (Optional, clicking background also works) */
+.orbit-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #333;
+}

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>トークライブ Detail - Bee Nice Web</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .new-mark {
+            position: relative;
+            display: inline-block;
+            font-family: var(--font-title);
+            font-weight: 900;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+
+            /* Rainbow Stroke Layer */
+            background: linear-gradient(135deg, #ff0000, #ffa500, #ffff00, #008000, #0000ff, #4b0082, #ee82ee, #ff0000, #ffa500, #ffff00, #008000, #0000ff, #4b0082, #ee82ee, #ff0000);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            color: transparent;
+            -webkit-text-stroke: 2px transparent;
+            animation: slide-gradient 4s linear infinite alternate;
+        }
+
+        /* White Fill Layer */
+        .new-mark::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #fff;
+            -webkit-text-stroke: 0;
+            z-index: 1;
+        }
+
+        @keyframes slide-gradient {
+            0% {
+                background-position: 100% 100%;
+            }
+
+            100% {
+                background-position: 0% 0%;
+            }
+        }
+
+        .section-title {
+            background-color: var(--color-orange);
+            color: #fff;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .seat-grid {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 2px;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .seat {
+            aspect-ratio: 1;
+            font-size: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Pizza Slice Trigger -->
+    <div class="orbit-trigger" style="background-color: var(--color-orange);">
+        <div class="orbit-trigger-icon">Menu</div>
+    </div>
+
+    <!-- Orbit Modal -->
+    <div class="orbit-modal">
+        <div class="orbit-modal-close">&times;</div>
+        <div class="orbit-header-container">
+            <!-- Central Circle (Current Category) -->
+            <a href="archive_talk.html" class="central-circle" style="background-color: var(--color-orange);">
+                <span style="font-size: 1.5rem;">ト</span>
+            </a>
+
+            <!-- Orbiting Circles -->
+            <div class="orbit-rotator">
+                <!-- Item 1: 0 deg -->
+                <div class="orbit-wrapper" style="transform: rotate(0deg) translate(120px) rotate(-0deg);">
+                    <a href="archive_sakura.html" class="orbit-item" style="background-color: var(--color-pink);">
+                        <div class="orbit-item-content">桜</div>
+                    </a>
+                </div>
+                <!-- Item 2: 60 deg -->
+                <div class="orbit-wrapper" style="transform: rotate(60deg) translate(120px) rotate(-60deg);">
+                    <a href="archive_nomaki.html" class="orbit-item" style="background-color: var(--color-blue);">
+                        <div class="orbit-item-content">の</div>
+                    </a>
+                </div>
+                <!-- Item 3: 120 deg -->
+                <div class="orbit-wrapper" style="transform: rotate(120deg) translate(120px) rotate(-120deg);">
+                    <a href="archive_koishikiuchi.html" class="orbit-item"
+                        style="background-color: var(--color-yellow);">
+                        <div class="orbit-item-content">コ</div>
+                    </a>
+                </div>
+                <!-- Item 4: 180 deg -->
+                <div class="orbit-wrapper" style="transform: rotate(180deg) translate(120px) rotate(-180deg);">
+                    <a href="detail_streaming.html" class="orbit-item" style="background-color: var(--color-green);">
+                        <div class="orbit-item-content">配</div>
+                    </a>
+                </div>
+                <!-- Item 5: 240 deg -->
+                <div class="orbit-wrapper" style="transform: rotate(240deg) translate(120px) rotate(-240deg);">
+                    <a href="https://be-flat.info/shop/" class="orbit-item" style="background-color: var(--color-red);"
+                        target="_blank" rel="noopener noreferrer">
+                        <div class="orbit-item-content">グ</div>
+                    </a>
+                </div>
+                <!-- Item 6: 300 deg -->
+                <div class="orbit-wrapper" style="transform: rotate(300deg) translate(120px) rotate(-300deg);">
+                    <a href="https://bee-nice.jugem.jp/" class="orbit-item" style="background-color: var(--color-gray);"
+                        target="_blank" rel="noopener noreferrer">
+                        <div class="orbit-item-content">B</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <a href="https://bee-nice.jugem.jp/" target="_blank" rel="noopener noreferrer"
+            style="display: flex; align-items: center; justify-content: center; height: 44px; font-weight: bold; font-size: 1rem;">
+            BLOG
+        </a>
+        <a href="index.html">LIVE</a>
+        <a href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="X (formerly Twitter)"
+            style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                    fill="currentColor" />
+            </svg>
+        </a>
+    </header>
+
+    <main style="max-width: 1000px; margin: 0 auto; padding-bottom: 4rem; padding-top: 10rem;">
+        <div style="text-align: left; margin-bottom: 2rem; padding: 0 1rem;">
+            <span class="new-mark" data-text="NEW">NEW</span>
+            <h2 style="font-size: 2rem; margin: 1rem 0;">タイトル</h2>
+            <div style="border-left: 4px solid #333; padding-left: 1.5rem; margin-top: 2rem;">
+                <p
+                    style="font-size: 0.9rem; color: #666; font-style: italic; margin-bottom: 0.5rem; font-family: serif;">
+                    Concept</p>
+                <p style="margin: 0; line-height: 1.8; font-size: 1rem;">
+                    テキストテキストテキストテキストテキストテキスト<br>
+                    テキストテキストテキストテキストテキストテキスト<br>
+                    テキストテキストテキストテキストテキストテキスト
+                </p>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 4rem;">
+            <h3 class="section-title">■出演</h3>
+            <div style="padding: 0 1rem;">
+                <p>出演者A</p>
+                <p>出演者B</p>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 4rem;">
+            <h3 class="section-title">■公演日</h3>
+            <div style="padding: 0 1rem;">
+                <p>2025年11月21日(金)</p>
+                <p>開場 18:00 / 開演 19:00</p>
+            </div>
+        </div>
+
+
+
+        <div style="margin-bottom: 4rem;">
+            <h3 class="section-title">■会場</h3>
+            <div style="padding: 0 1rem;">
+                <p>某所ホール</p>
+                <div style="
+                    width: 100%;
+                    height: 200px;
+                    background-color: #e0f7fa;
+                    margin-top: 1rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: #00bcd4;
+                    font-weight: bold;
+                ">
+                    Google Map Placeholder
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 4rem;">
+            <h3 class="section-title">■料金</h3>
+            <div style="padding: 0 1rem;">
+                <p>前売: 4,000円(税込)</p>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 5rem;">
+            <h3 style="font-size: 2rem; margin-bottom: 2rem;">STAGE</h3>
+            <div class="seat-grid">
+                <!-- Generating seats via JS would be cleaner, but hardcoding for static simplicity -->
+                <!-- Row A -->
+                <div class="seat" style="background-color: #87CEEB;">1</div>
+                <div class="seat" style="background-color: #87CEEB;">2</div>
+                <div class="seat" style="background-color: #87CEEB;">3</div>
+                <div class="seat" style="background-color: #87CEEB;">4</div>
+                <div class="seat" style="background-color: #87CEEB;">5</div>
+                <div class="seat" style="background-color: #F08080;">6</div>
+                <div class="seat" style="background-color: #F08080;">7</div>
+                <div class="seat" style="background-color: #F08080;">8</div>
+                <div class="seat" style="background-color: #F08080;">9</div>
+                <div class="seat" style="background-color: #F08080;">10</div>
+                <!-- Row B (Simplified for brevity) -->
+                <div class="seat" style="background-color: #87CEEB;">1</div>
+                <div class="seat" style="background-color: #87CEEB;">2</div>
+                <div class="seat" style="background-color: #87CEEB;">3</div>
+                <div class="seat" style="background-color: #87CEEB;">4</div>
+                <div class="seat" style="background-color: #87CEEB;">5</div>
+                <div class="seat" style="background-color: #F08080;">6</div>
+                <div class="seat" style="background-color: #F08080;">7</div>
+                <div class="seat" style="background-color: #F08080;">8</div>
+                <div class="seat" style="background-color: #F08080;">9</div>
+                <div class="seat" style="background-color: #F08080;">10</div>
+            </div>
+        </div>
+
+        <div style="
+            writing-mode: vertical-rl;
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            z-index: 10;
+            font-size: min(12vw, 13vh);
+            font-weight: 900;
+            color: transparent;
+            -webkit-text-stroke: 0.03em var(--color-orange);
+            letter-spacing: -0.05em;
+            line-height: 0.8;
+            text-align: right;
+            font-family: 'Zen Kaku Gothic New', sans-serif;
+            opacity: 1;
+            width: 100%;
+            white-space: nowrap;
+            pointer-events: none;
+        ">
+            トークライブ
+        </div>
+    </main>
+
+
+
+    <footer>
+        &copy; 2025 bee-nice.
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
