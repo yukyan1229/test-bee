@@ -79,8 +79,25 @@
         document.body.appendChild(panel);
 
         // Toggle Panel
-        btn.onclick = () => {
+        btn.onclick = (e) => {
+            e.stopPropagation(); // Prevent immediate closing
             panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+        };
+
+        // Close on outside click
+        document.addEventListener('click', (e) => {
+            // Check if click is outside panel, outside button, AND outside any open Pickr popup
+            if (panel.style.display === 'block' &&
+                !panel.contains(e.target) &&
+                e.target !== btn &&
+                !e.target.closest('.pcr-app')) {
+                panel.style.display = 'none';
+            }
+        });
+
+        // Prevent clicks inside panel from closing it
+        panel.onclick = (e) => {
+            e.stopPropagation();
         };
 
         // Load saved colors for Pickr initialization
@@ -127,14 +144,17 @@
                 }
             });
 
-            pickr.on('save', (colorObj) => {
-                const hex = colorObj.toHEXA().toString();
-                document.documentElement.style.setProperty(color.var, hex);
+            pickr.on('save', (selectedColor, instance) => {
+                const newColor = selectedColor.toHEXA().toString();
+                document.documentElement.style.setProperty(color.var, newColor);
 
                 // Save to localStorage
                 const currentSaved = JSON.parse(localStorage.getItem('themeColors') || '{}');
-                currentSaved[color.var] = hex;
+                currentSaved[color.var] = newColor;
                 localStorage.setItem('themeColors', JSON.stringify(currentSaved));
+
+                // Close ONLY the picker, keep the panel open
+                pickr.hide();
             });
 
             pickr.on('change', (colorObj) => {
