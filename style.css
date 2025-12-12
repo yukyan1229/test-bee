@@ -324,6 +324,107 @@ h3 {
     }
 }
 
+/* Top Page Menu Animations */
+@keyframes dropBounce {
+    0% {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+
+    40% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    55% {
+        transform: translateY(-40px);
+    }
+
+    70% {
+        transform: translateY(0);
+    }
+
+    85% {
+        transform: translateY(-15px);
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.home-menu-btn {
+    opacity: 0;
+    /* Start invisible */
+    /* 
+       1. dropBounce: 1.2s duration, ease-out for gravity feel
+       2. float: 3s duration, infinite, starts after 1.2s (plus individual delay)
+    */
+    animation:
+        dropBounce 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards,
+        float 4s ease-in-out infinite;
+    /* We will set animation-delay via inline styles for the sequence */
+}
+
+/* Ensure the hover effect (scale) still works by applying it to a wrapper or using a different property? 
+   The existing .circle-btn has a transition on transform. 
+   If we animate transform, the hover transform might conflict or be overridden.
+   
+   Existing .circle-btn:
+   transition: transform 0.3s, box-shadow 0.3s;
+   
+   If animation is running, it controls transform.
+   To allow hover scale, we should probably wrap the content or use a different property for one of them.
+   
+   OR: Apply the float to the button, and the drop to the button?
+   If the animation is running, `transform: scale(1.1)` on hover won't work because the keyframe `transform` takes precedence.
+   
+   SOLUTION:
+   Wrap each button in `index.html` with a `<div>` that handles the Drop animation.
+   The Button itself handles the Float animation AND the Hover scale.
+   Wait, if the button floats (transform), hover scale (transform) will still conflict.
+   
+   Better:
+   Wrapper: Drop Animation
+   Inner Wrapper: Float Animation
+   Button: Hover Scale
+   
+   That's a lot of wrappers.
+   
+   Alternative:
+   Use `margin-top` for float? Performance is okay for just a few items.
+   Use `translateY` for float, and `scale` for hover?
+   `transform: translateY(...) scale(...)`
+   We can't easily merge them without complex CSS variables.
+   
+   Let's try:
+   Wrapper: Drop & Float (The position moves)
+   Button: Hover Scale (The size changes)
+   
+   Yes. I will wrap each `<a>` in `index.html` with a `<div class="menu-item-wrapper">`.
+   Apply Drop and Float to the wrapper.
+   The `<a>` tag retains its existing hover effects.
+*/
+
+.menu-item-wrapper {
+    display: inline-block;
+    margin: 10px;
+    animation: float 4s ease-in-out infinite;
+}
+
 /* Responsive */
 @media (max-width: 600px) {
     header {
