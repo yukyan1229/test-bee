@@ -180,6 +180,7 @@ h3 {
     position: relative;
     transition: transform 0.3s ease;
     margin: 10px;
+    color: #fff;
 }
 
 .circle-btn:hover {
