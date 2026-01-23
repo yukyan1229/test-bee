@@ -438,6 +438,52 @@ h3 {
 
 /* Popup Navigation Styles */
 
+/* Unyonyo Appear Animation */
+@keyframes unyonyo {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    40% {
+        transform: scale(1.2, 0.8);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(0.9, 1.1);
+    }
+
+    60% {
+        transform: scale(1.05, 0.95);
+    }
+
+    70% {
+        transform: scale(0.98, 1.02);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.menu-item-wrapper {
+    display: inline-block;
+    margin: 10px;
+    opacity: 0;
+    /* Hidden by default until toggled */
+    /* Animation will be applied via JS class toggle or parent visibility */
+}
+
+/* When the menu is active, apply animations */
+.menu-active .menu-item-wrapper {
+    animation:
+        unyonyo 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards,
+        float 4s ease-in-out 0.8s infinite;
+    /* Delay float until appear is done */
+}
+
 /* Pizza Slice Trigger (Now Semicircle) */
 .orbit-trigger {
     position: fixed;

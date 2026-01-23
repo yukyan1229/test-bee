@@ -30,7 +30,8 @@
     </header>
 
     <main style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 80vh;">
-        <h1 style="
+        <a href="#" id="top-title" style="text-decoration: none; display: block; width: 100%; cursor: pointer;">
+            <h1 style="
             font-size: 10vw;
             font-weight: 900;
             margin-bottom: 4rem;
@@ -40,45 +41,50 @@
             color: #000;
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             width: 100%;
-        ">
-            LIVE<span style="font-size: 0.6em; vertical-align: middle; font-weight: 700;">のお知らせ</span>
-        </h1>
+            transition: transform 0.2s;
+        " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                LIVE<span style="font-size: 0.6em; vertical-align: middle; font-weight: 700;">のお知らせ</span>
+            </h1>
+        </a>
 
-        <div style="display: flex; flex-wrap: wrap; justify-content: center; max-width: 800px;">
+        <!-- Container ID for toggling -->
+        <div id=" top-menu"
+            style="display: flex; flex-wrap: wrap; justify-content: center; max-width: 800px; display: none;">
+            <!-- Hidden initially -->
             <!-- Category Buttons -->
-            <div class="menu-item-wrapper" style="animation-delay: 0s;">
+            <div class="menu-item-wrapper" style="animation-delay: 0s, 0.8s;">
                 <a href="archive_talk.html" class="circle-btn" style="background-color: var(--color-orange);">
                     <div class="rainbow-border"></div>
                     <span class="date">ト</span>
                 </a>
             </div>
-            <div class="menu-item-wrapper" style="animation-delay: -0.5s;">
+            <div class="menu-item-wrapper" style="animation-delay: 0.1s, 0.9s;">
                 <a href="archive_sakura.html" class="circle-btn" style="background-color: var(--color-pink);">
                     <span class="date">桜</span>
                 </a>
             </div>
-            <div class="menu-item-wrapper" style="animation-delay: -1s;">
+            <div class="menu-item-wrapper" style="animation-delay: 0.2s, 1.0s;">
                 <a href="archive_nomaki.html" class="circle-btn" style="background-color: var(--color-blue);">
                     <span class="date">の</span>
                 </a>
             </div>
-            <div class="menu-item-wrapper" style="animation-delay: -1.5s;">
+            <div class="menu-item-wrapper" style="animation-delay: 0.3s, 1.1s;">
                 <a href="archive_koishikiuchi.html" class="circle-btn" style="background-color: var(--color-yellow);">
                     <span class="date">コ</span>
                 </a>
             </div>
-            <div class="menu-item-wrapper" style="animation-delay: -2s;">
+            <div class="menu-item-wrapper" style="animation-delay: 0.4s, 1.2s;">
                 <a href="detail_streaming.html" class="circle-btn" style="background-color: var(--color-green);">
                     <span class="date">配</span>
                 </a>
             </div>
-            <div class="menu-item-wrapper" style="animation-delay: -2.5s;">
+            <div class="menu-item-wrapper" style="animation-delay: 0.5s, 1.3s;">
                 <a href="https://be-flat.info/shop/" target="_blank" rel="noopener noreferrer" class="circle-btn"
                     style="background-color: var(--color-red);">
                     <span class="date">グ</span>
                 </a>
             </div>
-            <div class="menu-item-wrapper" style="animation-delay: -3s;">
+            <div class="menu-item-wrapper" style="animation-delay: 0.6s, 1.4s;">
                 <a href="https://bee-nice.jugem.jp/" target="_blank" rel="noopener noreferrer" class="circle-btn"
                     style="background-color: var(--color-gray);">
                     <span class="date">B</span>
@@ -86,6 +92,22 @@
             </div>
         </div>
     </main>
+
+    <script>
+        document.getElementById('top-title').addEventListener('click', function (e) {
+            e.preventDefault(); // Prevent default link behavior if wrapped in <a> (it is not, but good practice)
+
+            const menu = document.getElementById('top-menu');
+            if (menu.style.display === 'none' || menu.style.display === '') {
+                menu.style.display = 'flex';
+                // Trigger reflow to restart animations if needed, but display block usually enough
+                menu.classList.add('menu-active');
+            } else {
+                menu.style.display = 'none';
+                menu.classList.remove('menu-active');
+            }
+        });
+    </script>
 
     <footer>
         &copy; 2025 bee-nice.
