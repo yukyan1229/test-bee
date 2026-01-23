@@ -438,13 +438,6 @@ h3 {
 
 /* Popup Navigation Styles */
 
-
-.menu-item-wrapper {
-    display: inline-block;
-    margin: 10px;
-    animation: float 4s ease-in-out infinite;
-}
-
 /* Pizza Slice Trigger (Now Semicircle) */
 .orbit-trigger {
     position: fixed;
