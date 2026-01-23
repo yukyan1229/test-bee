@@ -30,8 +30,7 @@
     </header>
 
     <main style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 80vh;">
-        <a href="#" id="top-title" style="text-decoration: none; display: block; width: 100%; cursor: pointer;">
-            <h1 style="
+        <h1 style="
             font-size: 10vw;
             font-weight: 900;
             margin-bottom: 4rem;
@@ -41,15 +40,11 @@
             color: #000;
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             width: 100%;
-            transition: transform 0.2s;
-        " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                LIVE<span style="font-size: 0.6em; vertical-align: middle; font-weight: 700;">のお知らせ</span>
-            </h1>
-        </a>
+        ">
+            LIVE<span style="font-size: 0.6em; vertical-align: middle; font-weight: 700;">のお知らせ</span>
+        </h1>
 
-        <!-- Container ID for toggling -->
-        <div id=" top-menu"
-            style="display: flex; flex-wrap: wrap; justify-content: center; max-width: 800px; display: none;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; max-width: 800px;">
             <!-- Hidden initially -->
             <!-- Category Buttons -->
             <div class="menu-item-wrapper" style="animation-delay: 0s, 0.8s;">
@@ -93,21 +88,7 @@
         </div>
     </main>
 
-    <script>
-        document.getElementById('top-title').addEventListener('click', function (e) {
-            e.preventDefault(); // Prevent default link behavior if wrapped in <a> (it is not, but good practice)
 
-            const menu = document.getElementById('top-menu');
-            if (menu.style.display === 'none' || menu.style.display === '') {
-                menu.style.display = 'flex';
-                // Trigger reflow to restart animations if needed, but display block usually enough
-                menu.classList.add('menu-active');
-            } else {
-                menu.style.display = 'none';
-                menu.classList.remove('menu-active');
-            }
-        });
-    </script>
 
     <footer>
         &copy; 2025 bee-nice.
