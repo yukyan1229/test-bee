@@ -355,17 +355,7 @@ h3 {
     }
 }
 
-@keyframes float {
 
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-10px);
-    }
-}
 
 .home-menu-btn {
     opacity: 0;
@@ -423,7 +413,7 @@ h3 {
 .menu-item-wrapper {
     display: inline-block;
     margin: 10px;
-    animation: float 4s ease-in-out infinite;
+    /* animation: float 4s ease-in-out infinite; */
 }
 
 /* Responsive */
@@ -471,8 +461,9 @@ h3 {
 }
 
 .orbit-trigger:hover {
-    animation: menu-stylish 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-    /* Smooth ease-out */
+    transform: scale(1.1);
+    /* animation: menu-stylish 0.5s cubic-bezier(0.25, 1, 0.5, 1); */
+    /* rotation removed */
 }
 
 .orbit-trigger-icon {
