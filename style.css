@@ -1,18 +1,18 @@
 :root {
     /* Color Palette - Adjusted for contrast with both white and black text */
-    --color-orange: #FF8C00;
+    --color-orange: #eda049;
     /* Darker Orange */
-    --color-pink: #FFB6C1;
+    --color-pink: #fdeff1;
     /* Light Pink (Paler as requested) */
-    --color-blue: #1E90FF;
+    --color-blue: #a080c5;
     /* Dodger Blue */
-    --color-yellow: #FFD700;
+    --color-yellow: #e5cd5e;
     /* Gold (Hard to balance, but better than pale yellow) */
-    --color-green: #32CD32;
+    --color-green: #436842;
     /* Lime Green */
-    --color-red: #FF4500;
+    --color-red: #B35227;
     /* Orange Red */
-    --color-gray: #808080;
+    --color-gray: #8D8281;
     /* Gray */
 
     --bg-color: #FFFFFF;
