@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>配信 - Bee Nice Web</title>
+    <title>配信 - LIVEのお知らせ</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap"
@@ -66,13 +66,9 @@
 </head>
 
 <body>
-    <!-- Pizza Slice Trigger -->
-    <div class="orbit-trigger" style="background-color: var(--color-green);">
-        <div class="orbit-trigger-icon">Menu</div>
-    </div>
-
     <!-- Orbit Modal -->
-    <div class="orbit-modal">
+    <div id="orbit-modal-overlay" class="orbit-modal-overlay"></div>
+    <div id="orbit-modal" class="orbit-modal">
         <div class="orbit-modal-close">&times;</div>
         <div class="orbit-header-container">
             <!-- Central Circle (Current Category) -->
@@ -80,7 +76,7 @@
                 <span style="font-size: 1.5rem;">配</span>
             </a>
 
-            <!-- Orbiting Circles -->
+            <!-- Orbiting Items -->
             <div class="orbit-rotator">
                 <!-- Item 1: 0 deg -->
                 <div class="orbit-wrapper" style="transform: rotate(0deg) translate(120px) rotate(-0deg);">
