@@ -12,53 +12,43 @@
 </head>
 
 <body>
-    <!-- Pizza Slice Trigger -->
-    <div class="orbit-trigger" style="background-color: var(--color-pink);">
-        <div class="orbit-trigger-icon">Menu</div>
-    </div>
-
-    <!-- Orbit Modal -->
-    <div class="orbit-modal">
+    <div id="orbit-modal-overlay" class="orbit-modal-overlay"></div>
+    <div id="orbit-modal" class="orbit-modal">
         <div class="orbit-modal-close">&times;</div>
         <div class="orbit-header-container">
             <!-- Central Circle (Current Category) -->
-            <a href="archive_sakura.html" class="central-circle" style="background-color: var(--color-pink);" >
+            <a href="archive_sakura.html" class="central-circle" style="background-color: var(--color-pink);">
                 <span style="font-size: 1.5rem;">桜</span>
             </a>
 
-            <!-- Orbiting Circles -->
+            <!-- Orbiting Items -->
             <div class="orbit-rotator">
                 <!-- Item 1: 0 deg -->
                 <div class="orbit-wrapper" style="transform: rotate(0deg) translate(120px) rotate(-0deg);">
-                    <a href="archive_talk.html" class="orbit-item" style="background-color: var(--color-orange);" >
+                    <a href="archive_talk.html" class="orbit-item" style="background-color: var(--color-orange);">
                         <div class="orbit-item-content">ト</div>
                     </a>
                 </div>
-                <!-- Item 2: 60 deg -->
                 <div class="orbit-wrapper" style="transform: rotate(60deg) translate(120px) rotate(-60deg);">
-                    <a href="archive_nomaki.html" class="orbit-item" style="background-color: var(--color-blue);" >
+                    <a href="archive_nomaki.html" class="orbit-item" style="background-color: var(--color-blue);">
                         <div class="orbit-item-content">の</div>
                     </a>
                 </div>
-                <!-- Item 3: 120 deg -->
                 <div class="orbit-wrapper" style="transform: rotate(120deg) translate(120px) rotate(-120deg);">
-                    <a href="archive_koishikiuchi.html" class="orbit-item" style="background-color: var(--color-yellow);" >
+                    <a href="archive_koishikiuchi.html" class="orbit-item" style="background-color: var(--color-yellow);">
                         <div class="orbit-item-content">コ</div>
                     </a>
                 </div>
-                <!-- Item 4: 180 deg -->
                 <div class="orbit-wrapper" style="transform: rotate(180deg) translate(120px) rotate(-180deg);">
-                    <a href="detail_streaming.html" class="orbit-item" style="background-color: var(--color-green);" >
+                    <a href="detail_streaming.html" class="orbit-item" style="background-color: var(--color-green);">
                         <div class="orbit-item-content">配</div>
                     </a>
                 </div>
-                <!-- Item 5: 240 deg -->
                 <div class="orbit-wrapper" style="transform: rotate(240deg) translate(120px) rotate(-240deg);">
                     <a href="https://bee6940.base.shop/" class="orbit-item" style="background-color: var(--color-red);" target="_blank" rel="noopener noreferrer">
                         <div class="orbit-item-content">グ</div>
                     </a>
                 </div>
-                <!-- Item 6: 300 deg -->
                 <div class="orbit-wrapper" style="transform: rotate(300deg) translate(120px) rotate(-300deg);">
                     <a href="https://bee-nice.jugem.jp/" class="orbit-item" style="background-color: var(--color-gray);" target="_blank" rel="noopener noreferrer">
                         <div class="orbit-item-content">B</div>
@@ -67,7 +57,6 @@
             </div>
         </div>
     </div>
-
     <header>
         <a href="https://bee-nice.jugem.jp/" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; justify-content: center; height: 44px; font-weight: bold; font-size: 1rem;">
             <img src="images/blog_logo.png" alt="BLOG" style="height: 25px; width: auto;">
