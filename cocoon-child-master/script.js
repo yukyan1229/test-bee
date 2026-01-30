@@ -123,6 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (topTitle && topMenu) {
             topTitle.addEventListener('click', () => {
+                console.log('Title clicked');
                 topMenu.classList.toggle('menu-visible');
                 topMenu.classList.toggle('menu-hidden');
             });
