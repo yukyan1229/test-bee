@@ -99,34 +99,36 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.location.href = href;
             }, 600);
             // Match CSS transition time slightly less to ensure coverage
+            // Match CSS transition time slightly less to ensure coverage
         });
-        // Modal Toggle Logic
-        const trigger = document.querySelector('.orbit-trigger');
-        const modal = document.querySelector('.orbit-modal');
-
-        if (trigger && modal) {
-            trigger.addEventListener('click', () => {
-                modal.classList.add('active');
-            });
-
-            modal.addEventListener('click', (e) => {
-                // Close if clicking outside the orbit container (or explicitly on modal bg)
-                if (e.target === modal || e.target.classList.contains('orbit-modal-close')) {
-                    modal.classList.remove('active');
-                }
-            });
-        }
-
-        // Top Page Menu Toggle
-        const topTitle = document.getElementById('top-title');
-        const topMenu = document.getElementById('top-menu-container');
-
-        if (topTitle && topMenu) {
-            topTitle.addEventListener('click', () => {
-                console.log('Title clicked');
-                topMenu.classList.toggle('menu-visible');
-                topMenu.classList.toggle('menu-hidden');
-            });
-        }
     });
+
+    // Modal Toggle Logic
+    const trigger = document.querySelector('.orbit-trigger');
+    const modal = document.querySelector('.orbit-modal');
+
+    if (trigger && modal) {
+        trigger.addEventListener('click', () => {
+            modal.classList.add('active');
+        });
+
+        modal.addEventListener('click', (e) => {
+            // Close if clicking outside the orbit container (or explicitly on modal bg)
+            if (e.target === modal || e.target.classList.contains('orbit-modal-close')) {
+                modal.classList.remove('active');
+            }
+        });
+    }
+
+    // Top Page Menu Toggle
+    const topTitle = document.getElementById('top-title');
+    const topMenu = document.getElementById('top-menu-container');
+
+    if (topTitle && topMenu) {
+        topTitle.addEventListener('click', () => {
+            console.log('Title clicked');
+            topMenu.classList.toggle('menu-visible');
+            topMenu.classList.toggle('menu-hidden');
+        });
+    }
 });
