@@ -30,7 +30,7 @@
     </header>
 
     <main style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 80vh;">
-        <h1 style="
+        <h1 id="top-title" style="
             font-size: min(10vw, 120px);
             font-weight: 900;
             margin-bottom: 4rem;
@@ -40,11 +40,14 @@
             color: #000;
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             width: 100%;
+            cursor: pointer;
+            transition: transform 0.2s;
         ">
             LIVE<span style="font-size: 0.6em; vertical-align: middle; font-weight: 700;">のお知らせ</span>
         </h1>
 
-        <div style="display: flex; flex-wrap: wrap; justify-content: center; max-width: 800px;">
+        <div id="top-menu-container" class="menu-hidden"
+            style="display: flex; flex-wrap: wrap; justify-content: center; max-width: 800px;">
             <!-- Category Buttons -->
             <div class="menu-item-wrapper" style="animation-delay: 0s;">
                 <a href="archive_talk.html" class="circle-btn" style="background-color: var(--color-orange);">

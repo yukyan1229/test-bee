@@ -6,8 +6,21 @@ document.addEventListener('DOMContentLoaded', () => {
     overlay.id = 'transition-overlay';
     document.body.appendChild(overlay);
 
-    // Intercept Links
+    // Intercept Links & Open External in New Tab
+    let externalLinkCount = 0;
     document.querySelectorAll('a').forEach(link => {
+        // External Link Handling
+        if (link.hostname && link.hostname !== window.location.hostname) {
+            link.setAttribute('target', '_blank');
+            link.setAttribute('rel', 'noopener noreferrer');
+
+            externalLinkCount++;
+            // Analytics: Set distinguishable title if missing
+            if (!link.getAttribute('title')) {
+                link.setAttribute('title', `${link.href}_${externalLinkCount}`);
+            }
+        }
+
         link.addEventListener('click', (e) => {
             const href = link.getAttribute('href');
 
@@ -101,6 +114,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (e.target === modal || e.target.classList.contains('orbit-modal-close')) {
                     modal.classList.remove('active');
                 }
+            });
+        }
+
+        // Top Page Menu Toggle
+        const topTitle = document.getElementById('top-title');
+        const topMenu = document.getElementById('top-menu-container');
+
+        if (topTitle && topMenu) {
+            topTitle.addEventListener('click', () => {
+                topMenu.classList.toggle('menu-visible');
+                topMenu.classList.toggle('menu-hidden');
             });
         }
     });

@@ -116,5 +116,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }
+
+        // Top Page Menu Toggle
+        const topTitle = document.getElementById('top-title');
+        const topMenu = document.getElementById('top-menu-container');
+
+        if (topTitle && topMenu) {
+            topTitle.addEventListener('click', () => {
+                topMenu.classList.toggle('menu-visible');
+                topMenu.classList.toggle('menu-hidden');
+            });
+        }
     });
 });
