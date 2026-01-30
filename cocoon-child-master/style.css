@@ -692,3 +692,68 @@ h3 {
     /* Half padding for mobile */
   }
 }
+
+/* Top Page Menu Interaction */
+#top-title {
+  position: relative;
+  z-index: 9999;
+  /* Ensure it is on top */
+  cursor: pointer;
+  /* Explicit cursor */
+}
+
+#top-title:hover {
+  transform: scale(1.05);
+}
+
+.menu-hidden .menu-item-wrapper {
+  opacity: 0;
+  visibility: hidden;
+  /* Ensure it is not clickable */
+  transform: scale(0.5);
+  /* pointer-events: none; Redundant with visibility: hidden but kept for safety */
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.menu-visible .menu-item-wrapper {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+  /* pointer-events: auto; */
+}
+
+/* Staggered transition delay when showing */
+.menu-visible .menu-item-wrapper:nth-child(1) {
+  transition-delay: 0.0s;
+}
+
+.menu-visible .menu-item-wrapper:nth-child(2) {
+  transition-delay: 0.1s;
+}
+
+.menu-visible .menu-item-wrapper:nth-child(3) {
+  transition-delay: 0.2s;
+}
+
+.menu-visible .menu-item-wrapper:nth-child(4) {
+  transition-delay: 0.3s;
+}
+
+.menu-visible .menu-item-wrapper:nth-child(5) {
+  transition-delay: 0.4s;
+}
+
+.menu-visible .menu-item-wrapper:nth-child(6) {
+  transition-delay: 0.5s;
+}
+
+.menu-visible .menu-item-wrapper:nth-child(7) {
+  transition-delay: 0.6s;
+}
+
+.menu-item-wrapper {
+  /* Base transition defined above in hidden/visible states, 
+       but we ensure the base state allows transition */
+  display: block;
+  /* Ensure they render */
+}
