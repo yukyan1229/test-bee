@@ -1,373 +1,427 @@
+@charset "UTF-8";
+
+/*!
+Theme Name: Cocoon Child
+Description: Cocoon専用の子テーマ
+Theme URI: https://wp-cocoon.com/
+Author: わいひら
+Author URI: https://nelog.jp/
+Template:   cocoon-master
+Version:    1.1.3
+*/
+
+/************************************
+** 子テーマ用のスタイルを書く
+************************************/
+/*必要ならばここにコードを書く*/
+
 :root {
-    /* Color Palette - Adjusted for contrast with both white and black text */
-    --color-orange: #eda049;
-    /* Darker Orange */
-    --color-pink: #fdeff1;
-    /* Light Pink (Paler as requested) */
-    --color-blue: #a080c5;
-    /* Dodger Blue */
-    --color-yellow: #e5cd5e;
-    /* Gold (Hard to balance, but better than pale yellow) */
-    --color-green: #436842;
-    /* Lime Green */
-    --color-red: #B35227;
-    /* Orange Red */
-    --color-gray: #8D8281;
-    /* Gray */
+  /* Color Palette - Adjusted for contrast with both white and black text */
+  --color-orange: #eda049;
+  /* Darker Orange */
+  --color-pink: #fdeff1;
+  /* Light Pink (Paler as requested) */
+  --color-blue: #a080c5;
+  /* Dodger Blue */
+  --color-yellow: #e5cd5e;
+  /* Gold (Hard to balance, but better than pale yellow) */
+  --color-green: #436842;
+  /* Lime Green */
+  --color-red: #B35227;
+  /* Orange Red */
+  --color-gray: #8D8281;
+  /* Gray */
 
-    --bg-color: #FFFFFF;
-    --text-color: #333333;
+  --bg-color: #FFFFFF;
+  --text-color: #333333;
 
-    --font-title: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    --font-body: 'Zen Kaku Gothic New', sans-serif;
+  --font-title: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-body: 'Zen Kaku Gothic New', sans-serif;
 }
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    font-family: var(--font-body);
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    overflow-x: hidden;
-    opacity: 0;
-    /* For fade-in on load */
-    transition: opacity 0.5s ease;
-    padding-bottom: 1rem;
+  font-family: var(--font-body);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  overflow-x: hidden;
+  /* opacity: 0; Removed to prevent hiding WP Admin Editor */
+  padding-bottom: 1rem;
 }
 
-body.loaded {
-    opacity: 1;
-}
+
 
 a {
-    text-decoration: none;
-    color: inherit;
-    cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
 }
 
-/* Layout */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: #666666;
-    color: #fff;
-    font-family: var(--font-title);
-    font-weight: bold;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
+/* Header Override */
+/* The layout is handled by php templates, but we need these styles */
+/* Note: We might need to scope this if it conflicts with Cocoon's header */
+.custom-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #666666;
+  color: #fff;
+  font-family: var(--font-title);
+  font-weight: bold;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+/* Header Grid/Flex Logic for Perfect Centering */
+.custom-header>a:nth-child(1) {
+  /* Left item stays in flow, pushed left by space-between */
+  z-index: 2;
+}
+
+.custom-header>a:nth-child(2) {
+  /* Center item: Absolute positioning to ignore side widths */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  z-index: 1;
+  white-space: nowrap;
+  /* Prevent wrapping */
+  /* Reset flex properties just in case */
+  justify-content: center;
+}
+
+.custom-header>a:nth-child(3) {
+  /* Right item stays in flow, pushed right by space-between */
+  z-index: 2;
 }
 
 main {
-    margin-top: 60px;
-    padding: 5rem;
-    min-height: calc(100vh - 100px);
-    overflow: hidden;
+  margin-top: 60px;
+  padding: 2rem 1rem;
+  /* Reduced from 5rem to avoid huge mobile gaps */
+  min-height: calc(100vh - 100px);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Mobile Adjustments */
+@media screen and (max-width: 768px) {
+  main {
+    padding: 1rem;
+    /* Even smaller padding for mobile */
+    min-height: calc(100vh - 60px);
+  }
+
+  .custom-header {
+    padding: 1rem;
+    /* Tighter header padding */
+  }
 }
 
 .rainbow-border {
-    position: absolute;
-    top: -6px;
-    left: -6px;
-    right: -6px;
-    bottom: -6px;
-    border-radius: 50%;
-    background: conic-gradient(from 0deg, #ff0000, #ffa500, #ffff00, #008000, #0000ff, #4b0082, #ee82ee, #ff0000);
-    z-index: 1;
-    /* On top of parent background */
-    animation: spin 2s linear infinite;
-    pointer-events: none;
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  right: -6px;
+  bottom: -6px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, #ff0000, #ffa500, #ffff00, #008000, #0000ff, #4b0082, #ee82ee, #ff0000);
+  z-index: 1;
+  /* On top of parent background */
+  animation: spin 2s linear infinite;
+  pointer-events: none;
 
-    /* Create a 1px ring with transparent center using mask */
-    padding: 1px;
-    /* Width of the ring */
-    -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
+  /* Create a 1px ring with transparent center using mask */
+  padding: 1px;
+  /* Width of the ring */
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
 }
 
 @keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
+  0% {
+    transform: rotate(0deg);
+  }
 
-    100% {
-        transform: rotate(360deg);
-    }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
-footer {
-    text-align: center;
-    background-color: transparent;
-    color: #000;
-    font-size: 0.8rem;
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
+/* Footer Override */
+.custom-footer {
+  text-align: center;
+  background-color: transparent;
+  color: #000;
+  font-size: 0.8rem;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
 }
 
 /* Typography */
 h1,
 h2,
 h3 {
-    font-family: var(--font-title);
+  font-family: var(--font-title);
 }
 
 /* Transition Overlay */
 #transition-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 9999;
-    overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
 }
 
 .transition-circle {
-    position: absolute;
-    border-radius: 50%;
-    /* Initial transform is set by JS */
-    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-    /* Ease-out for "pop" effect */
-    pointer-events: none;
-    z-index: 9999;
+  position: absolute;
+  border-radius: 50%;
+  /* Initial transform is set by JS */
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  /* Ease-out for "pop" effect */
+  pointer-events: none;
+  z-index: 9999;
 }
 
 .transition-circle.expand {
-    transform: translate(-50%, -50%) scale(300);
-    /* Expand to cover screen */
+  transform: translate(-50%, -50%) scale(300);
+  /* Expand to cover screen */
 }
 
 /* Fade Overlay */
 .fade-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #fff;
-    opacity: 0;
-    pointer-events: none;
-    z-index: 9999;
-    transition: opacity 0.5s ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transition: opacity 0.5s ease;
 }
 
 .fade-overlay.active {
-    opacity: 1;
-    pointer-events: auto;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /* Circle Button Styles */
 .circle-btn {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    transition: transform 0.3s ease;
-    margin: 10px;
-    color: #fff;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transition: transform 0.3s ease;
+  margin: 10px;
+  color: #fff;
 }
 
 .circle-btn:hover {
-    transform: scale(1.2);
+  transform: scale(1.2);
 }
 
 .circle-btn .date {
-    position: absolute;
-    font-size: 0.8rem;
-    font-weight: bold;
-    opacity: 0;
-    transition: opacity 0.2s;
-    pointer-events: none;
+  position: absolute;
+  font-size: 0.8rem;
+  font-weight: bold;
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+
+/* Navigation Hover Overrides */
+.custom-header a:hover,
+.circle-btn:hover,
+.orbit-item:hover,
+.central-circle:hover {
+  color: #fff !important;
+  /* Keep white text on hover */
 }
 
 .circle-btn:hover .date {
-    opacity: 1;
-}
-
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
+  opacity: 1;
 }
 
 /* Orbit Header Styles */
 .orbit-header-container {
-    position: relative;
-    width: 300px;
-    height: 300px;
-    margin: 0 auto 4rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: relative;
+  width: 300px;
+  height: 300px;
+  margin: 0 auto 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .central-circle {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background-color: var(--color-orange);
-    /* Default, overridden inline */
-    z-index: 10;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    color: #fff;
-    font-size: 1.2rem;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: var(--color-orange);
+  /* Default, overridden inline */
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: #fff;
+  font-size: 1.2rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 .orbit-rotator {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    animation: orbit-spin 20s linear infinite;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  animation: orbit-spin 20s linear infinite;
 }
 
 .orbit-header-container:hover .orbit-rotator {
-    animation-play-state: paused;
+  animation-play-state: paused;
 }
 
 .orbit-wrapper {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 60px;
-    height: 60px;
-    margin-top: -30px;
-    margin-left: -30px;
-    pointer-events: auto;
-    /* Ensure wrapper captures events if needed, though anchor is inside */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  margin-top: -30px;
+  margin-left: -30px;
+  pointer-events: auto;
+  /* Ensure wrapper captures events if needed, though anchor is inside */
 }
 
 .orbit-item {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 0.7rem;
-    font-weight: bold;
-    color: #fff;
-    text-decoration: none;
-    transition: transform 0.3s ease;
-    background-color: #fff;
-    /* Fallback */
-    position: relative;
-    z-index: 1;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.7rem;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+  background-color: #fff;
+  /* Fallback */
+  position: relative;
+  z-index: 1;
 }
 
 .orbit-item:hover {
-    transform: scale(1.5);
-    z-index: 20;
-    cursor: pointer;
+  transform: scale(1.5);
+  z-index: 20;
+  cursor: pointer;
 }
 
 /* Counter-rotate items to keep them upright */
 .orbit-item-content {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: orbit-spin-reverse 20s linear infinite;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: orbit-spin-reverse 20s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .orbit-item:hover .orbit-item-content {
-    opacity: 1;
+  opacity: 1;
 }
 
 .orbit-header-container:hover .orbit-item-content {
-    animation-play-state: paused;
+  animation-play-state: paused;
 }
 
 @keyframes orbit-spin {
-    from {
-        transform: rotate(0deg);
-    }
+  from {
+    transform: rotate(0deg);
+  }
 
-    to {
-        transform: rotate(360deg);
-    }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes orbit-spin-reverse {
-    from {
-        transform: rotate(360deg);
-    }
+  from {
+    transform: rotate(360deg);
+  }
 
-    to {
-        transform: rotate(0deg);
-    }
+  to {
+    transform: rotate(0deg);
+  }
 }
 
 /* Top Page Menu Animations */
 @keyframes dropBounce {
-    0% {
-        transform: translateY(-100vh);
-        opacity: 0;
-    }
+  0% {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
 
-    40% {
-        transform: translateY(0);
-        opacity: 1;
-    }
+  40% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 
-    55% {
-        transform: translateY(-40px);
-    }
+  55% {
+    transform: translateY(-40px);
+  }
 
-    70% {
-        transform: translateY(0);
-    }
+  70% {
+    transform: translateY(0);
+  }
 
-    85% {
-        transform: translateY(-15px);
-    }
+  85% {
+    transform: translateY(-15px);
+  }
 
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 
 
 .home-menu-btn {
-    opacity: 0;
-    /* Start invisible */
-    /* 
+  opacity: 0;
+  /* Start invisible */
+  /* 
        1. dropBounce: 1.2s duration, ease-out for gravity feel
        2. float: 3s duration, infinite, starts after 1.2s (plus individual delay)
     */
-    animation:
-        dropBounce 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards,
-        float 4s ease-in-out infinite;
-    /* We will set animation-delay via inline styles for the sequence */
+  animation:
+    dropBounce 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards,
+    float 4s ease-in-out infinite;
+  /* We will set animation-delay via inline styles for the sequence */
 }
 
 /* Ensure the hover effect (scale) still works by applying it to a wrapper or using a different property? 
@@ -411,114 +465,230 @@ h3 {
 */
 
 .menu-item-wrapper {
-    display: inline-block;
-    margin: 10px;
-    /* animation: float 4s ease-in-out infinite; */
+  display: inline-block;
+  margin: 10px;
+  /* animation: float 4s ease-in-out infinite; */
 }
 
 /* Responsive */
 @media (max-width: 600px) {
-    header {
-        padding: 1rem;
-    }
+  header {
+    padding: 1rem;
+  }
 
-    main {
-        padding: 2.5rem;
-    }
+  main {
+    padding: 2.5rem;
+  }
 }
 
 /* Popup Navigation Styles */
 
 /* Pizza Slice Trigger (Now Semicircle) */
 .orbit-trigger {
-    position: fixed;
-    top: 26px;
-    /* Header (76px) - Half Height (50px) = 26px */
-    left: 20px;
-    width: 100px;
-    height: 100px;
-    /* background-color set inline */
-    border-radius: 50%;
-    /* Full circle */
-    cursor: pointer;
-    z-index: 900;
-    /* Behind header (1000) */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: fixed;
+  top: 26px;
+  /* Header (76px) - Half Height (50px) = 26px */
+  left: 20px;
+  width: 100px;
+  height: 100px;
+  /* background-color set inline */
+  border-radius: 50%;
+  /* Full circle */
+  cursor: pointer;
+  z-index: 900;
+  /* Behind header (1000) */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 @keyframes menu-stylish {
-    0% {
-        transform: rotate(0deg);
-    }
+  0% {
+    transform: rotate(0deg);
+  }
 
-    100% {
-        transform: rotate(360deg);
-    }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .orbit-trigger:hover {
-    transform: scale(1.1);
-    /* animation: menu-stylish 0.5s cubic-bezier(0.25, 1, 0.5, 1); */
-    /* rotation removed */
+  transform: scale(1.1);
+  /* animation: menu-stylish 0.5s cubic-bezier(0.25, 1, 0.5, 1); */
+  /* rotation removed */
 }
 
 .orbit-trigger-icon {
-    position: absolute;
-    bottom: 20px;
-    /* Position in the visible bottom half */
-    left: 50%;
-    transform: translateX(-50%);
-    color: #fff;
-    font-weight: bold;
-    font-size: 1rem;
-    pointer-events: none;
+  position: absolute;
+  bottom: 20px;
+  /* Position in the visible bottom half */
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-weight: bold;
+  font-size: 1rem;
+  pointer-events: none;
 }
 
 /* Modal Overlay */
 .orbit-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.95);
-    z-index: 3000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.4s ease;
-    backdrop-filter: blur(5px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.95);
+  z-index: 3000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  backdrop-filter: blur(5px);
 }
 
 .orbit-modal.active {
-    opacity: 1;
-    pointer-events: auto;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /* Adjust Orbit Container for Modal */
 .orbit-modal .orbit-header-container {
-    margin: 0;
-    /* Remove default margin */
-    transform: scale(0.8);
-    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  margin: 0;
+  /* Remove default margin */
+  transform: scale(0.8);
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .orbit-modal.active .orbit-header-container {
-    transform: scale(1);
+  transform: scale(1);
 }
 
 /* Close Button (Optional, clicking background also works) */
 .orbit-modal-close {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 2rem;
-    cursor: pointer;
-    color: #333;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #333;
+}
+
+/************************************
+** レスポンシブデザイン用のメディアクエリ
+************************************/
+/*1023px以下*/
+@media screen and (max-width: 1023px) {
+  /*必要ならばここにコードを書く*/
+}
+
+/*834px以下*/
+@media screen and (max-width: 834px) {
+  /*必要ならばここにコードを書く*/
+}
+
+/* Detail Page Styles */
+.detail-content h2 {
+  background-color: var(--page-color, #666);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  margin-top: 3rem;
+  /* Add spacing before new sections */
+  font-family: var(--font-title);
+  border: none;
+  /* Reset standard WP themes */
+}
+
+.summary-box,
+.detail-content blockquote,
+.detail-content .wp-block-quote,
+.detail-content .blank-box {
+  border-left: 4px solid var(--page-color, #666);
+  padding-left: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  color: #666666;
+  background: transparent;
+  /* Reset standard quote bg */
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  box-shadow: none;
+  /* Reset Cocoon box shadow if any */
+  padding-right: 0;
+}
+
+.summary-box p,
+.detail-content blockquote p,
+.detail-content .wp-block-quote p,
+.detail-content .blank-box p {
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 0;
+  font-family: var(--font-body);
+  font-weight: 500;
+}
+
+/* Hide default quotation marks */
+.detail-content blockquote::before,
+.detail-content blockquote::after,
+.detail-content .wp-block-quote::before,
+.detail-content .wp-block-quote::after {
+  content: none !important;
+  display: none !important;
+}
+
+.new-mark {
+  color: transparent;
+  -webkit-text-stroke: 1px #000;
+  font-weight: 900;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  display: inline-block;
+  font-family: var(--font-title);
+  margin-bottom: 0.5rem;
+}
+
+.page-main-title {
+  font-size: 2rem;
+  margin: 1rem 0;
+  color: #333;
+  /* Standard styling */
+  font-family: var(--font-title);
+}
+
+/* Detail Page Content Styles */
+.detail-content {
+  padding: 0 1rem;
+  /* Default Desktop Padding */
+}
+
+.detail-content p {
+  margin-bottom: 1.5rem;
+  /* Ensure paragraph spacing */
+  line-height: 1.8;
+}
+
+/* Quote/Summary Block specific */
+.detail-content blockquote p {
+  margin-bottom: 0 !important;
+}
+
+/* Content Links */
+.detail-content a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  /* Optional: improves readability */
+}
+
+@media screen and (max-width: 768px) {
+  .detail-content {
+    padding: 0 0.5rem;
+    /* Half padding for mobile */
+  }
 }
