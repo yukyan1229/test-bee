@@ -91,7 +91,7 @@ $angle_step = ($count > 0) ? 360 / $count : 0;
                 ?>
                 <div class="orbit-wrapper"
                     style="transform: rotate(<?php echo $current_angle; ?>deg) translate(120px) rotate(-<?php echo $current_angle; ?>deg);">
-                    <a href="<?php echo $item['link']; ?>" class="orbit-item"
+                    <a href="<?php echo $item['link']; ?>" class="orbit-item theme-<?php echo $item['slug']; ?>"
                         style="background-color: var(--color-<?php echo $item['color']; ?>);" <?php echo $target_attr; ?>>
                         <div class="orbit-item-content"><?php echo $item['char']; ?></div>
                     </a>

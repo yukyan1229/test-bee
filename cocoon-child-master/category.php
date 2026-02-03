@@ -63,7 +63,7 @@ if (!$active_item) {
                 the_post();
                 $is_latest = (get_the_ID() === $latest_id);
                 ?>
-                <a href="<?php the_permalink(); ?>" class="circle-btn"
+                <a href="<?php the_permalink(); ?>" class="circle-btn theme-<?php echo $slug; ?>"
                     style="--item-color: var(--color-<?php echo $color; ?>); background-color: var(--item-color); width: 70px; height: 70px;">
                     <?php if ($is_latest): ?>
                         <div class="rainbow-border"></div>

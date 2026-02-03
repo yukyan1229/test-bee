@@ -106,7 +106,7 @@
                 $target_attr = isset($item['target']) ? ' target="' . $item['target'] . '" rel="noopener noreferrer"' : '';
                 ?>
                 <div class="menu-item-wrapper" style="animation-delay: <?php echo $item['delay']; ?>;">
-                    <a href="<?php echo $item['link']; ?>" class="circle-btn"
+                    <a href="<?php echo $item['link']; ?>" class="circle-btn theme-<?php echo $item['slug']; ?>"
                         style="--item-color: var(--color-<?php echo $item['color']; ?>); background-color: var(--item-color);"
                         <?php echo $target_attr; ?>>
                         <?php if ($item['has_border']): ?>

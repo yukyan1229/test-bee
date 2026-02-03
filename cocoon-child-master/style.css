@@ -617,6 +617,27 @@ h3 {
 }
 
 /* Detail Page Styles */
+/* Detail Page Styles */
+/* Sakura Theme Specifics for Readability */
+.theme-sakura .detail-content h2.wp-block-heading {
+  -webkit-text-stroke: 1px #e2b2b7;
+  font-weight: bold;
+  paint-order: stroke fill;
+}
+
+/* Add outline to White Text on Pink Backgrounds (Sakura Theme) */
+.theme-sakura .circle-btn .date,
+.circle-btn.theme-sakura .date,
+.orbit-item.theme-sakura .orbit-item-content,
+.theme-sakura .orbit-trigger-icon,
+.theme-sakura .central-circle {
+  -webkit-text-stroke: 1px #e2b2b7;
+  font-weight: bold;
+  paint-order: stroke fill;
+}
+
+
+
 .detail-content h2 {
   background-color: var(--page-color, #666);
   color: #fff;
