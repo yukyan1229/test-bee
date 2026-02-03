@@ -10,7 +10,7 @@
     </a>
 
     <!-- Center: LIVE -->
-    <a href="<?php echo home_url('/'); ?>">LIVE</a>
+    <a href="<?php echo home_url('/'); ?>">bee-nice</a>
 
     <!-- Right: X Link -->
     <a href="https://x.com/beenice1969" target="_blank" rel="noopener noreferrer" aria-label="X (formerly Twitter)"
