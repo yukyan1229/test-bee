@@ -127,8 +127,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (topTitle && topMenu) {
         topTitle.addEventListener('click', () => {
             console.log('Title clicked');
-            topMenu.classList.toggle('menu-visible');
-            topMenu.classList.toggle('menu-hidden');
+            // Toggle classes for opacity/pointer-events
+            if (topMenu.classList.contains('menu-hidden')) {
+                topMenu.classList.remove('menu-hidden');
+                topMenu.classList.add('menu-visible');
+            } else {
+                topMenu.classList.remove('menu-visible');
+                topMenu.classList.add('menu-hidden');
+            }
         });
     }
 });

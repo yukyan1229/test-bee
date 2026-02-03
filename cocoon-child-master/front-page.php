@@ -7,21 +7,19 @@
 <div class="home-container">
     <main class="home-main"
         style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; max-width: 1000px; margin: 0 auto; padding: 0;">
-        <h1 class="main-title" style="
-            font-size: min(10vw, 120px);
-            font-weight: 900;
-            margin-bottom: 4vh; /* Use vh for dynamic spacing */
-            letter-spacing: -0.05em;
+        <h1 id="top-title" class="main-title" style="
+            margin-bottom: 4vh;
             text-align: center;
-            line-height: 1;
-            color: #000;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             width: 100%;
+            cursor: pointer;
+            transition: transform 0.2s;
         ">
-            LIVE<span style="font-size: 0.6em; vertical-align: middle; font-weight: 700;">のお知らせ</span>
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/beenice_logo.png" alt="bee-nice"
+                style="width: 100%; max-width: 300px; height: auto;">
         </h1>
 
-        <div style="display: flex; flex-wrap: wrap; justify-content: center; max-width: 800px; gap: 10px;">
+        <div id="top-menu-container" class="menu-hidden"
+            style="display: flex; flex-wrap: wrap; justify-content: center; max-width: 800px; gap: 10px;">
             <?php
             // Get Latest Content Info for Dynamic Border
             $latest_info = cocoon_child_get_latest_content_info();
@@ -109,7 +107,8 @@
                 ?>
                 <div class="menu-item-wrapper" style="animation-delay: <?php echo $item['delay']; ?>;">
                     <a href="<?php echo $item['link']; ?>" class="circle-btn"
-                        style="background-color: var(--color-<?php echo $item['color']; ?>);" <?php echo $target_attr; ?>>
+                        style="--item-color: var(--color-<?php echo $item['color']; ?>); background-color: var(--item-color);"
+                        <?php echo $target_attr; ?>>
                         <?php if ($item['has_border']): ?>
                             <div class="rainbow-border"></div>
                         <?php endif; ?>

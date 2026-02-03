@@ -64,7 +64,7 @@ if (!$active_item) {
                 $is_latest = (get_the_ID() === $latest_id);
                 ?>
                 <a href="<?php the_permalink(); ?>" class="circle-btn"
-                    style="background-color: var(--color-<?php echo $color; ?>); width: 70px; height: 70px;">
+                    style="--item-color: var(--color-<?php echo $color; ?>); background-color: var(--item-color); width: 70px; height: 70px;">
                     <?php if ($is_latest): ?>
                         <div class="rainbow-border"></div>
                     <?php endif; ?>
