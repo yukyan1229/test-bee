@@ -636,8 +636,6 @@ h3 {
   paint-order: stroke fill;
 }
 
-
-
 .detail-content h2 {
   background-color: var(--page-color, #666);
   color: #fff;
@@ -743,8 +741,8 @@ h3 {
 /* Top Page Menu Interaction */
 #top-title {
   position: relative;
-  z-index: 9999;
-  /* Ensure it is on top */
+  z-index: 1;
+  /* Reduced from 9999 to avoid header overlap */
   cursor: pointer;
   /* Explicit cursor */
 }
@@ -894,7 +892,7 @@ body.home {
   html,
   body.home {
     height: auto;
-    min-height: 100vh;
+    min-height: auto !important;
     overflow-y: auto;
     /* Restore scroll for mobile */
   }
@@ -905,7 +903,7 @@ body.home {
     /* Minimal header offset */
     padding-bottom: 0 !important;
     /* Zero bottom padding */
-    min-height: 100vh;
+    min-height: auto !important;
     justify-content: flex-start !important;
     /* Start from top */
   }
@@ -918,12 +916,31 @@ body.home {
     /* Minimal top margin */
     margin-bottom: 0 !important;
     /* Zero bottom margin */
+    min-height: auto !important;
+    height: auto !important;
   }
 
   .main-title {
+    margin-top: calc(12vh + 60px) !important;
+    /* 12vh + Header Height */
     margin-bottom: 2vh !important;
-    /* Reduced title margin */
+    /* Adjusted to 2vh as requested */
     font-size: 15vw !important;
+    line-height: 0 !important;
+    /* Remove vertical spacing around image */
+  }
+
+  /* Fix Footer Overlap on Mobile */
+  .home-container .custom-footer {
+    position: relative !important;
+    bottom: auto !important;
+    margin-top: 10vh;
+    padding-bottom: 20px;
+  }
+
+  /* Reduce Logo Size on Mobile (Half of 300px) */
+  #top-title img {
+    max-width: 150px !important;
   }
 }
 
