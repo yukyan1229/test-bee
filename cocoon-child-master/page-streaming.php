@@ -52,15 +52,7 @@ $cat_name = '配信';
             </svg>
         </a>
 
-        <!-- YouTube Music -->
-        <a href="https://music.youtube.com/search?q=%E6%9C%A8%E5%86%85%E7%A7%80%E4%BF%A1" target="_blank"
-            rel="noopener noreferrer" class="streaming-card" title="Streaming: YouTube Music">
-            <span class="service-name">YouTube Music</span>
-            <svg class="arrow-icon" viewBox="0 0 24 24">
-                <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-            </svg>
-        </a>
+
     </div>
 
 
