@@ -20,6 +20,8 @@ Version:    1.1.3
   --color-orange: #eda049;
   /* Darker Orange */
   --color-pink: #fdeff1;
+  --color-pink-dark: #cc8489;
+  /* Darker Pink for Outline (Calculated from #fdeff1) */
   /* Light Pink (Paler as requested) */
   --color-blue: #a080c5;
   /* Dodger Blue */
@@ -29,7 +31,7 @@ Version:    1.1.3
   /* Lime Green */
   --color-red: #B35227;
   /* Orange Red */
-  --color-gray: #8D8281;
+  --color-gray: #666666;
   /* Gray */
 
   --bg-color: #FFFFFF;
@@ -70,7 +72,8 @@ a {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: #666666;
+  background-color: var(--current-theme-color, #666666);
+  /* Dynamic Color with fallback */
   color: #fff;
   font-family: var(--font-title);
   font-weight: bold;

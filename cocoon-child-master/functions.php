@@ -237,5 +237,64 @@ function cocoon_child_register_menus()
 {
     register_nav_menu('footer-custom-menu', 'Custom Footer Menu');
 }
+
+// 12. 現在のテーマコンテキスト（スラッグと色）を取得する
+function cocoon_child_get_theme_context()
+{
+    // デフォルト
+    $context = ['slug' => 'default', 'color' => 'gray'];
+
+    if (is_front_page()) {
+        return $context; // Front page uses gray/default or specific style
+    }
+
+    // カテゴリー判定
+    if (is_category()) {
+        $cat = get_queried_object();
+        $slug = $cat->slug;
+        $context['slug'] = $slug;
+    }
+    // 固定ページ判定
+    elseif (is_page()) {
+        $cats = get_the_category();
+        if (!empty($cats)) {
+            $context['slug'] = $cats[0]->slug;
+        } else {
+            $post = get_post();
+            $context['slug'] = $post->post_name;
+        }
+    }
+
+    // カラーマッピング
+    $colors = [
+        'talk' => 'orange',
+        'sakura' => 'pink',
+        'nomaki' => 'blue',
+        'koishikiuchi' => 'yellow',
+        'streaming' => 'green',
+        'blog' => 'gray', // default
+    ];
+
+    if (isset($colors[$context['slug']])) {
+        $context['color'] = $colors[$context['slug']];
+    }
+
+    return $context;
+}
+
+// 13. body_classにテーマスラッグを追加 (CSSスタイリング用)
+function cocoon_child_add_theme_body_class($classes)
+{
+    if (!is_admin()) {
+        $context = cocoon_child_get_theme_context();
+        if ($context['slug']) {
+            $classes[] = 'theme-' . $context['slug'];
+        }
+    }
+    return $classes;
+}
+add_filter('body_class', 'cocoon_child_add_theme_body_class');
+
+// Previous standard calls
 add_action('init', 'cocoon_child_register_menus');
 add_action('init', 'cocoon_child_add_rewrite_rules');

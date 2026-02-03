@@ -34,6 +34,19 @@ if (!defined('ABSPATH'))
     }
     ?>
 
+    <?php
+    // Inject Theme Color Variable
+    $context = cocoon_child_get_theme_context();
+    $theme_color_var = isset($context['color']) ? "var(--color-{$context['color']})" : "var(--color-gray)";
+    ?>
+    <style>
+        :root {
+            --current-theme-color:
+                <?php echo $theme_color_var; ?>
+            ;
+        }
+    </style>
+
     <?php wp_head(); ?>
 
     <?php cocoon_template_part('tmp/head-custom-field'); ?>
