@@ -760,43 +760,74 @@ h3 {
 
 
 /* Footer Menu Styles */
-.footer-menu-container {
+.custom-footer {
+  /* Ensure footer handles full width for background if needed, 
+       but here transparent. */
+  width: 100%;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   max-width: 1000px;
-  margin: 0 auto 1.5rem;
-  /* Add spacing below menu */
-  padding: 0 1rem;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.footer-menu-container {
+  /* Reset margins as parent handles spacing */
+  margin: 0;
+  padding: 0;
 }
 
 .footer-menu-items {
   list-style: none;
-  /* Remove bullets */
   padding: 0;
   margin: 0;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+  /* Align right within container if needed */
   flex-wrap: wrap;
-  /* Allow wrapping on small screens */
   gap: 1.5rem;
-  /* Space between items */
 }
 
 .footer-menu-items li {
   margin: 0;
-  /* Remove default margin */
 }
 
 .footer-menu-items a {
   color: #666;
-  /* Match site tone */
   font-size: 0.9rem;
-  text-decoration: none;
+  text-decoration: underline;
+  /* Sakura Style */
+  text-underline-offset: 3px;
+  /* Sakura Style */
   transition: color 0.3s;
 }
 
 .footer-menu-items a:hover {
   color: #333;
-  /* Darken on hover */
-  text-decoration: underline;
+  /* text-decoration is already underline */
+}
+
+.footer-copyright {
+  font-size: 0.8rem;
+  color: #000;
+}
+
+/* Responsive Footer */
+@media screen and (max-width: 768px) {
+  .footer-inner {
+    flex-direction: column-reverse;
+    /* Menu Top, Copyright Bottom */
+    gap: 1rem;
+  }
+
+  .footer-menu-items {
+    justify-content: center;
+    /* Center items on mobile */
+  }
 }
 
 .footer-copyright {
