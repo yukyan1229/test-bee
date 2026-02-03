@@ -4,18 +4,21 @@
 
 // Determine Context
 $slug = '';
+if (is_front_page()) {
+    return; // Do not display on Front Page
+}
+
 if (is_category()) {
     $slug = get_queried_object()->slug;
 } elseif (is_page()) {
     $cats = get_the_category();
+    // ... rest of logic
     if (!empty($cats)) {
         $slug = $cats[0]->slug;
     } else {
         $post = get_post();
         $slug = $post->post_name; // e.g. 'streaming'
     }
-} elseif (is_front_page()) {
-    // Front page doesn usually show orbit modal, but in case
 }
 
 // Orbit Items Configuration

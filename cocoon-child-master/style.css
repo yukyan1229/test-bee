@@ -830,6 +830,131 @@ h3 {
   }
 }
 
+/* Front Page Specific Layout */
+/* Front Page Specific Layout */
+body.home {
+  height: 100vh;
+  /* Use vh to force full viewport height */
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  /* Prevent scroll on body */
+}
+
+/* Allow scroll only if content overflows (Mobile) */
+@media screen and (max-width: 768px) {
+
+  html,
+  body.home {
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+    /* Restore scroll for mobile */
+  }
+
+  /* Adjust container for mobile */
+  .home-container {
+    padding-top: 60px !important;
+    /* Minimal header offset */
+    padding-bottom: 0 !important;
+    /* Zero bottom padding */
+    min-height: 100vh;
+    justify-content: flex-start !important;
+    /* Start from top */
+  }
+
+  /* Add side padding and remove vertical margins */
+  .home-main {
+    padding: 0 20px !important;
+    /* Side padding only */
+    margin-top: 0 !important;
+    /* Minimal top margin */
+    margin-bottom: 0 !important;
+    /* Zero bottom margin */
+  }
+
+  .main-title {
+    margin-bottom: 2vh !important;
+    /* Reduced title margin */
+    font-size: 15vw !important;
+  }
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  padding-top: 60px;
+  /* Header offset */
+  padding-bottom: 40px;
+  /* Footer offset */
+}
+
+/* Footer Override for Home */
+.home-container .custom-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding-bottom: 10px;
+}
+
+/* Streaming Page Styles */
+.streaming-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 600px;
+  margin: 4rem auto;
+  padding: 0 1rem;
+}
+
+.streaming-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2rem;
+  border: 1px solid var(--color-green);
+  border-radius: 50px;
+  /* Pill shape */
+  text-decoration: none;
+  color: var(--color-green);
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.streaming-card:hover {
+  background-color: var(--color-green);
+  color: #fff;
+  transform: scale(1.02);
+}
+
+.service-name {
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  font-family: var(--font-title);
+}
+
+.arrow-icon {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+.intro-text {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 1rem;
+  line-height: 2;
+  font-family: serif;
+  font-style: italic;
+  color: #666;
+}
+
 .footer-copyright {
   font-size: 0.8rem;
   color: #000;

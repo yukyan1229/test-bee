@@ -44,70 +44,54 @@ if (isset($titles[$slug])) {
 }
 
 ?>
-<!DOCTYPE html>
-<html lang="ja">
+<?php get_header(); ?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <?php the_title(); ?> - LIVEのお知らせ
-    </title>
-    <?php wp_head(); ?>
-</head>
+<style>
+    :root {
+        --page-color: var(--color-<?php echo $color; ?>);
+    }
+</style>
 
-<body <?php body_class(); ?>>
+<main style="max-width: 1000px; margin: 0 auto; padding-bottom: 4rem; padding-top: 10rem;">
 
+    <!-- Content Loop -->
+    <?php if (have_posts()):
+        while (have_posts()):
+            the_post(); ?>
 
-    <?php get_template_part('tmp-user/orbit-modal'); ?>
-    <?php get_template_part('tmp-user/header', 'custom'); ?>
+            <div class="detail-content">
+                <!-- Title Section -->
+                <div style="text-align: left; margin-bottom: 2rem; color:#666666;">
+                    <!-- Optional: NEW Mark logic -->
+                    <?php
+                    $latest_info = cocoon_child_get_latest_content_info();
+                    $latest_id = $latest_info ? $latest_info['id'] : 0;
+                    if (get_the_ID() === $latest_id):
+                        ?>
+                        <span class="new-mark">NEW</span>
+                    <?php endif; ?>
 
-    <style>
-        :root {
-            --page-color: var(--color-<?php echo $color; ?>);
-        }
-    </style>
+                    <!-- Main Title -->
+                    <h2 style="font-size: 2rem; margin: 1rem 0; background: none; color: #333; padding: 0;">
 
-    <main style="max-width: 1000px; margin: 0 auto; padding-bottom: 4rem; padding-top: 10rem;">
-
-        <!-- Content Loop -->
-        <?php if (have_posts()):
-            while (have_posts()):
-                the_post(); ?>
-
-                <div class="detail-content">
-                    <!-- Title Section -->
-                    <div style="text-align: left; margin-bottom: 2rem; color:#666666;">
-                        <!-- Optional: NEW Mark logic -->
-                        <?php
-                        $latest_info = cocoon_child_get_latest_content_info();
-                        $latest_id = $latest_info ? $latest_info['id'] : 0;
-                        if (get_the_ID() === $latest_id):
-                            ?>
-                            <span class="new-mark">NEW</span>
-                        <?php endif; ?>
-
-                        <!-- Main Title -->
-                        <h2 style="font-size: 2rem; margin: 1rem 0; background: none; color: #333; padding: 0;">
-
-                            <?php the_title(); ?>
-                        </h2>
-                        <!-- Note to User: Use <div class="summary-box">...</div> for the top summary in the editor -->
-                    </div>
-                    <!-- Post Content -->
-                    <?php the_content(); ?>
+                        <?php the_title(); ?>
+                    </h2>
+                    <!-- Note to User: Use <div class="summary-box">...</div> for the top summary in the editor -->
                 </div>
-            <?php endwhile; endif; ?>
+                <!-- Post Content -->
+                <?php the_content(); ?>
+            </div>
+        <?php endwhile; endif; ?>
 
-        <!-- Contact Button (Themed) -->
-        <!-- Contact Button (Themed) -->
-        <?php
-        $allowed_slugs = ['nomaki', 'sakura', 'talk', 'koishikiuchi'];
-        if (in_array($slug, $allowed_slugs)):
-            ?>
-            <div style="text-align: center; margin: 4rem 0;">
-                <a href="https://forms.gle/xGF9eTSNafoSH4LM6" target="_blank" rel="noopener noreferrer" title="お問い合わせ"
-                    aria-label="お問い合わせ" style="
+    <!-- Contact Button (Themed) -->
+    <!-- Contact Button (Themed) -->
+    <?php
+    $allowed_slugs = ['nomaki', 'sakura', 'talk', 'koishikiuchi'];
+    if (in_array($slug, $allowed_slugs)):
+        ?>
+        <div style="text-align: center; margin: 4rem 0;">
+            <a href="https://forms.gle/xGF9eTSNafoSH4LM6" target="_blank" rel="noopener noreferrer" title="お問い合わせ"
+                aria-label="お問い合わせ" style="
                    display: inline-flex;
                    align-items: center;
                    justify-content: center;
@@ -119,13 +103,13 @@ if (isset($titles[$slug])) {
                    color: white;
                    transition: transform 0.3s;
            " onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
-                    <span class="material-symbols-outlined" style="font-size: 40px;">mail</span>
-                </a>
-            </div>
-        <?php endif; ?>
+                <span class="material-symbols-outlined" style="font-size: 40px;">mail</span>
+            </a>
+        </div>
+    <?php endif; ?>
 
-        <!-- Vertical Title -->
-        <div style="
+    <!-- Vertical Title -->
+    <div style="
             writing-mode: vertical-rl;
             position: fixed;
             bottom: 0;
@@ -144,13 +128,13 @@ if (isset($titles[$slug])) {
             white-space: nowrap;
             pointer-events: none;
         ">
-            <?php echo $cat_name; ?>
-        </div>
-    </main>
+        <?php echo $cat_name; ?>
+    </div>
+</main>
 
-    <?php get_template_part('tmp-user/footer', 'custom'); ?>
+<?php get_template_part('tmp-user/footer', 'custom'); ?>
 
-    <?php wp_footer(); ?>
+<?php wp_footer(); ?>
 </body>
 
 </html>

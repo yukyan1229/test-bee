@@ -1,95 +1,13 @@
 <?php
 // front-page.php
 ?>
-<!DOCTYPE html>
-<html lang="ja">
+<?php get_header(); ?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LIVEのお知らせ</title>
-    <?php wp_head(); ?>
-    <style>
-        /* Front Page Specific Layout (No Scroll on PC) */
-        html,
-        body.home {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            /* Prevent scroll on body */
-        }
 
-        /* Allow scroll only if content overflows (Mobile) */
-        @media screen and (max-width: 768px) {
-
-            html,
-            body.home {
-                height: auto;
-                min-height: 100vh;
-                overflow-y: auto;
-                /* Restore scroll for mobile */
-            }
-
-            /* Adjust container for mobile */
-            .home-container {
-                padding-top: 60px !important;
-                /* Minimal header offset */
-                padding-bottom: 0 !important;
-                /* Zero bottom padding */
-                min-height: 100vh;
-                justify-content: flex-start !important;
-                /* Start from top */
-            }
-
-            /* Add side padding and remove vertical margins */
-            .home-main {
-                padding: 0 20px !important;
-                /* Side padding only */
-                margin-top: 0 !important;
-                /* Minimal top margin */
-                margin-bottom: 0 !important;
-                /* Zero bottom margin */
-            }
-
-            .main-title {
-                margin-bottom: 2vh !important;
-                /* Reduced title margin */
-                font-size: 15vw !important;
-            }
-        }
-
-        .home-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            width: 100%;
-            box-sizing: border-box;
-            padding-top: 60px;
-            /* Header offset */
-            padding-bottom: 40px;
-            /* Footer offset */
-        }
-
-        /* Footer Override for Home */
-        .home-container .custom-footer {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            padding-bottom: 10px;
-        }
-    </style>
-</head>
-
-<body <?php body_class(); ?>>
-    <?php get_template_part('tmp-user/header', 'custom'); ?>
-
-    <div class="home-container">
-        <main class="home-main"
-            style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; max-width: 1000px; margin: 0 auto; padding: 0;">
-            <h1 class="main-title" style="
+<div class="home-container">
+    <main class="home-main"
+        style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; max-width: 1000px; margin: 0 auto; padding: 0;">
+        <h1 class="main-title" style="
             font-size: min(10vw, 120px);
             font-weight: 900;
             margin-bottom: 4vh; /* Use vh for dynamic spacing */
@@ -100,112 +18,112 @@
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             width: 100%;
         ">
-                LIVE<span style="font-size: 0.6em; vertical-align: middle; font-weight: 700;">のお知らせ</span>
-            </h1>
+            LIVE<span style="font-size: 0.6em; vertical-align: middle; font-weight: 700;">のお知らせ</span>
+        </h1>
 
-            <div style="display: flex; flex-wrap: wrap; justify-content: center; max-width: 800px; gap: 10px;">
-                <?php
-                // Get Latest Content Info for Dynamic Border
-                $latest_info = cocoon_child_get_latest_content_info();
-                $latest_cat_slug = $latest_info ? $latest_info['category'] : '';
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; max-width: 800px; gap: 10px;">
+            <?php
+            // Get Latest Content Info for Dynamic Border
+            $latest_info = cocoon_child_get_latest_content_info();
+            $latest_cat_slug = $latest_info ? $latest_info['category'] : '';
 
-                // Menu Items Configuration
-                $menu_items = [
-                    [
-                        'slug' => 'talk',
-                        'type' => 'category',
-                        'char' => 'ト',
-                        'color' => 'orange',
-                        'link' => home_url('/talk/'),
-                        'delay' => '0s',
-                        'has_border' => ($latest_cat_slug === 'talk')
-                    ],
-                    [
-                        'slug' => 'sakura',
-                        'type' => 'category',
-                        'char' => '桜',
-                        'color' => 'pink',
-                        'link' => home_url('/sakura/'),
-                        'delay' => '-0.5s',
-                        'has_border' => ($latest_cat_slug === 'sakura')
-                    ],
-                    [
-                        'slug' => 'nomaki',
-                        'type' => 'category',
-                        'char' => 'の',
-                        'color' => 'blue',
-                        'link' => home_url('/nomaki/'),
-                        'delay' => '-1s',
-                        'has_border' => ($latest_cat_slug === 'nomaki')
-                    ],
-                    [
-                        'slug' => 'koishikiuchi',
-                        'type' => 'category',
-                        'char' => 'コ',
-                        'color' => 'yellow',
-                        'link' => home_url('/koishikiuchi/'),
-                        'delay' => '-1.5s',
-                        'has_border' => ($latest_cat_slug === 'koishikiuchi')
-                    ],
-                    [
-                        'slug' => 'streaming',
-                        'type' => 'page',
-                        'char' => '配',
-                        'color' => 'green',
-                        'link' => home_url('/streaming/'),
-                        'delay' => '-2s',
-                        'has_border' => false
-                    ],
-                    /*
-                    [
-                        'slug' => 'goods',
-                        'type' => 'external',
-                        'char' => 'グ',
-                        'color' => 'red',
-                        'link' => 'https://bee6940.base.shop/',
-                        'delay' => '-2.5s',
-                        'has_border' => false,
-                        'target' => '_blank'
-                    ],
-                    */
-                    [
-                        'slug' => 'blog',
-                        'type' => 'external',
-                        'char' => 'B',
-                        'color' => 'gray',
-                        'link' => 'https://bee-nice.jugem.jp/',
-                        'delay' => '-3s',
-                        'has_border' => false,
-                        'target' => '_blank'
-                    ]
-                ];
+            // Menu Items Configuration
+            $menu_items = [
+                [
+                    'slug' => 'talk',
+                    'type' => 'category',
+                    'char' => 'ト',
+                    'color' => 'orange',
+                    'link' => home_url('/talk/'),
+                    'delay' => '0s',
+                    'has_border' => ($latest_cat_slug === 'talk')
+                ],
+                [
+                    'slug' => 'sakura',
+                    'type' => 'category',
+                    'char' => '桜',
+                    'color' => 'pink',
+                    'link' => home_url('/sakura/'),
+                    'delay' => '-0.5s',
+                    'has_border' => ($latest_cat_slug === 'sakura')
+                ],
+                [
+                    'slug' => 'nomaki',
+                    'type' => 'category',
+                    'char' => 'の',
+                    'color' => 'blue',
+                    'link' => home_url('/nomaki/'),
+                    'delay' => '-1s',
+                    'has_border' => ($latest_cat_slug === 'nomaki')
+                ],
+                [
+                    'slug' => 'koishikiuchi',
+                    'type' => 'category',
+                    'char' => 'コ',
+                    'color' => 'yellow',
+                    'link' => home_url('/koishikiuchi/'),
+                    'delay' => '-1.5s',
+                    'has_border' => ($latest_cat_slug === 'koishikiuchi')
+                ],
+                [
+                    'slug' => 'streaming',
+                    'type' => 'page',
+                    'char' => '配',
+                    'color' => 'green',
+                    'link' => home_url('/streaming/'),
+                    'delay' => '-2s',
+                    'has_border' => false
+                ],
+                /*
+                [
+                    'slug' => 'goods',
+                    'type' => 'external',
+                    'char' => 'グ',
+                    'color' => 'red',
+                    'link' => 'https://bee6940.base.shop/',
+                    'delay' => '-2.5s',
+                    'has_border' => false,
+                    'target' => '_blank'
+                ],
+                */
+                [
+                    'slug' => 'blog',
+                    'type' => 'external',
+                    'char' => 'B',
+                    'color' => 'gray',
+                    'link' => 'https://bee-nice.jugem.jp/',
+                    'delay' => '-3s',
+                    'has_border' => false,
+                    'target' => '_blank'
+                ]
+            ];
 
-                // Render loop
-                foreach ($menu_items as $item):
-                    // Check Visibility
-                    if (!cocoon_child_is_menu_item_visible($item['slug'], $item['type'])) {
-                        continue; // Skip if no content
-                    }
+            // Render loop
+            foreach ($menu_items as $item):
+                // Check Visibility
+                if (!cocoon_child_is_menu_item_visible($item['slug'], $item['type'])) {
+                    continue; // Skip if no content
+                }
 
-                    $target_attr = isset($item['target']) ? ' target="' . $item['target'] . '" rel="noopener noreferrer"' : '';
-                    ?>
-                    <div class="menu-item-wrapper" style="animation-delay: <?php echo $item['delay']; ?>;">
-                        <a href="<?php echo $item['link']; ?>" class="circle-btn"
-                            style="background-color: var(--color-<?php echo $item['color']; ?>);" <?php echo $target_attr; ?>>
-                            <?php if ($item['has_border']): ?>
-                                <div class="rainbow-border"></div>
-                            <?php endif; ?>
-                            <span class="date"><?php echo $item['char']; ?></span>
-                        </a>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        </main>
+                $target_attr = isset($item['target']) ? ' target="' . $item['target'] . '" rel="noopener noreferrer"' : '';
+                ?>
+                <div class="menu-item-wrapper" style="animation-delay: <?php echo $item['delay']; ?>;">
+                    <a href="<?php echo $item['link']; ?>" class="circle-btn"
+                        style="background-color: var(--color-<?php echo $item['color']; ?>);" <?php echo $target_attr; ?>>
+                        <?php if ($item['has_border']): ?>
+                            <div class="rainbow-border"></div>
+                        <?php endif; ?>
+                        <span class="date"><?php echo $item['char']; ?></span>
+                    </a>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </main>
 
-        <?php get_template_part('tmp-user/footer', 'custom'); ?>
-    </div>
+    <?php get_template_part('tmp-user/footer', 'custom'); ?>
+</div>
 
-    <?php wp_footer(); ?>
+<?php wp_footer(); ?>
 </body>
 
 </html>

@@ -40,33 +40,11 @@ if (!$active_item) {
     $active_item = ['char' => mb_substr($cat_name, 0, 1), 'color' => $color, 'link' => '#'];
 }
 ?>
-<!DOCTYPE html>
-<html lang="ja">
+<?php get_header(); ?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <?php single_cat_title(); ?> - LIVEのお知らせ
-    </title>
-    <?php wp_head(); ?>
-    <style>
-        /* Archive Specific Styles */
-        :root {
-            /* Inherit global, override if needed */
-        }
-    </style>
-</head>
-
-<body <?php body_class(); ?>>
-    <!-- Orbit Modal -->
-    <?php get_template_part('tmp-user/orbit-modal'); ?>
-
-    <?php get_template_part('tmp-user/header', 'custom'); ?>
-
-    <main style="text-align: center;">
-        <!-- Grid -->
-        <div style="
+<main style="text-align: center;">
+    <!-- Grid -->
+    <div style="
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
             gap: 20px;
@@ -75,42 +53,42 @@ if (!$active_item) {
             justify-items: center;
             margin-top: 4rem;
         ">
-            <?php
-            // Get Latest Content Info for Dynamic Border
-            $latest_info = cocoon_child_get_latest_content_info();
-            $latest_id = $latest_info ? $latest_info['id'] : 0;
+        <?php
+        // Get Latest Content Info for Dynamic Border
+        $latest_info = cocoon_child_get_latest_content_info();
+        $latest_id = $latest_info ? $latest_info['id'] : 0;
 
-            if (have_posts()): ?>
-                <?php while (have_posts()):
-                    the_post();
-                    $is_latest = (get_the_ID() === $latest_id);
-                    ?>
-                    <a href="<?php the_permalink(); ?>" class="circle-btn"
-                        style="background-color: var(--color-<?php echo $color; ?>); width: 70px; height: 70px;">
-                        <?php if ($is_latest): ?>
-                            <div class="rainbow-border"></div>
-                        <?php endif; ?>
-                        <span class="date">
-                            <?php
-                            // Extract suffix from slug (e.g. 'sakura-01' -> '01', 'talk_05' -> '05')
-                            // Logic: Split by '-' or '_', take the last part.
-                            $post_slug = get_post()->post_name;
-                            $parts = preg_split('/[-_]/', $post_slug);
-                            $display_text = end($parts);
+        if (have_posts()): ?>
+            <?php while (have_posts()):
+                the_post();
+                $is_latest = (get_the_ID() === $latest_id);
+                ?>
+                <a href="<?php the_permalink(); ?>" class="circle-btn"
+                    style="background-color: var(--color-<?php echo $color; ?>); width: 70px; height: 70px;">
+                    <?php if ($is_latest): ?>
+                        <div class="rainbow-border"></div>
+                    <?php endif; ?>
+                    <span class="date">
+                        <?php
+                        // Extract suffix from slug (e.g. 'sakura-01' -> '01', 'talk_05' -> '05')
+                        // Logic: Split by '-' or '_', take the last part.
+                        $post_slug = get_post()->post_name;
+                        $parts = preg_split('/[-_]/', $post_slug);
+                        $display_text = end($parts);
 
-                            // If split failed or only one part, maybe use title or check formatting
-                            // Assuming format is PREFIX_NUMBER or PREFIX-NUMBER
-                            echo esc_html($display_text);
-                            ?>
-                        </span>
-                    </a>
-                <?php endwhile; ?>
-            <?php else: ?>
-                <p>記事が見つかりませんでした。</p>
-            <?php endif; ?>
-        </div>
+                        // If split failed or only one part, maybe use title or check formatting
+                        // Assuming format is PREFIX_NUMBER or PREFIX-NUMBER
+                        echo esc_html($display_text);
+                        ?>
+                    </span>
+                </a>
+            <?php endwhile; ?>
+        <?php else: ?>
+            <p>記事が見つかりませんでした。</p>
+        <?php endif; ?>
+    </div>
 
-        <div style="
+    <div style="
             writing-mode: vertical-rl;
             position: fixed;
             bottom: 0;
@@ -129,13 +107,13 @@ if (!$active_item) {
             white-space: nowrap;
             pointer-events: none;
         ">
-            <?php single_cat_title(); ?>
-        </div>
-    </main>
+        <?php single_cat_title(); ?>
+    </div>
+</main>
 
-    <?php get_template_part('tmp-user/footer', 'custom'); ?>
+<?php get_template_part('tmp-user/footer', 'custom'); ?>
 
-    <?php wp_footer(); ?>
+<?php wp_footer(); ?>
 </body>
 
 </html>
