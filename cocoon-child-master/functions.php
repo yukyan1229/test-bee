@@ -232,4 +232,10 @@ function cocoon_child_get_latest_content_info()
 
     return null;
 }
+// 11. フッターメニューの登録
+function cocoon_child_register_menus()
+{
+    register_nav_menu('footer-custom-menu', 'Custom Footer Menu');
+}
+add_action('init', 'cocoon_child_register_menus');
 add_action('init', 'cocoon_child_add_rewrite_rules');

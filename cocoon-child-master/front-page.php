@@ -72,6 +72,14 @@
             padding-bottom: 40px;
             /* Footer offset */
         }
+
+        /* Footer Override for Home */
+        .home-container .custom-footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding-bottom: 10px;
+        }
     </style>
 </head>
 
@@ -194,9 +202,7 @@
             </div>
         </main>
 
-        <footer class="custom-footer" style="position: absolute; bottom: 10px; width: 100%;">
-            &copy; <?php echo date('Y'); ?> bee-nice.
-        </footer>
+        <?php get_template_part('tmp-user/footer', 'custom'); ?>
     </div>
 
     <?php wp_footer(); ?>

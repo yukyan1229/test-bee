@@ -156,10 +156,7 @@ $cat_name = '配信';
         </div>
     </main>
 
-    <footer class="custom-footer">
-        &copy;
-        <?php echo date('Y'); ?> bee-nice.
-    </footer>
+    <?php get_template_part('tmp-user/footer', 'custom'); ?>
 
     <?php wp_footer(); ?>
 </body>

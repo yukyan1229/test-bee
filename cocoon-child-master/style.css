@@ -757,3 +757,49 @@ h3 {
   display: block;
   /* Ensure they render */
 }
+
+
+/* Footer Menu Styles */
+.footer-menu-container {
+  max-width: 1000px;
+  margin: 0 auto 1.5rem;
+  /* Add spacing below menu */
+  padding: 0 1rem;
+}
+
+.footer-menu-items {
+  list-style: none;
+  /* Remove bullets */
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  /* Allow wrapping on small screens */
+  gap: 1.5rem;
+  /* Space between items */
+}
+
+.footer-menu-items li {
+  margin: 0;
+  /* Remove default margin */
+}
+
+.footer-menu-items a {
+  color: #666;
+  /* Match site tone */
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-menu-items a:hover {
+  color: #333;
+  /* Darken on hover */
+  text-decoration: underline;
+}
+
+.footer-copyright {
+  font-size: 0.8rem;
+  color: #000;
+}
