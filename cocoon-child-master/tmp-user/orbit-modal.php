@@ -41,7 +41,7 @@ foreach ($orbit_items_raw as $item) {
     }
 }
 if (!$active_item) {
-    $active_item = ['slug' => 'unknown', 'char' => '?', 'color' => 'gray', 'link' => '#'];
+    $active_item = ['slug' => 'unknown', 'char' => 'HOME', 'color' => 'gray', 'link' => home_url('/')];
 }
 
 // 2. Filter Items for Orbit Ring (Remove Active AND Empty Categories)
