@@ -252,7 +252,8 @@ h3 {
   position: relative;
   transition: transform 0.3s ease;
   margin: 10px;
-  color: #fff;
+  color: var(--item-color, transparent);
+  /* Text blends with background by default */
 }
 
 .circle-btn:hover {
@@ -269,12 +270,21 @@ h3 {
 }
 
 /* Navigation Hover Overrides */
-.custom-header a:hover,
+.custom-header a:hover {
+  color: #fff !important;
+}
+
+/* Theme Button Hover: Text becomes theme color (blends with bg), Background unchanged */
+/* Theme Button Hover: Text becomes theme color (blends with bg), Background unchanged */
 .circle-btn:hover,
-.orbit-item:hover,
+.orbit-item:hover {
+  color: var(--item-color, #e53900) !important;
+  /* Text "disappears" into the same-colored background */
+}
+
+/* Central Circle Hover Exception: Text becomes White */
 .central-circle:hover {
   color: #fff !important;
-  /* Keep white text on hover */
 }
 
 .circle-btn:hover .date {
@@ -340,7 +350,8 @@ h3 {
   align-items: center;
   font-size: 0.7rem;
   font-weight: bold;
-  color: #fff;
+  color: var(--item-color, transparent);
+  /* Text blends with background (invisible) as requested */
   text-decoration: none;
   transition: transform 0.3s ease;
   background-color: #fff;
