@@ -15,7 +15,7 @@
             transition: transform 0.2s;
         ">
             <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/beenice_logo.png" alt="bee-nice"
-                style="width: 100%; max-width: 300px; height: auto;">
+                style="width: 100%; max-width: 75px; height: auto;">
         </h1>
 
         <div id="top-menu-container" class="menu-hidden"

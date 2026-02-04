@@ -275,7 +275,6 @@ h3 {
 }
 
 /* Theme Button Hover: Text becomes theme color (blends with bg), Background unchanged */
-/* Theme Button Hover: Text becomes theme color (blends with bg), Background unchanged */
 .circle-btn:hover,
 .orbit-item:hover {
   color: var(--item-color, #e53900) !important;
@@ -939,9 +938,9 @@ body.home {
     padding-bottom: 20px;
   }
 
-  /* Reduce Logo Size on Mobile (Half of 300px) */
+  /* Reduce Logo Size on Mobile (Half of 300px -> Further 1/2 = 75px) */
   #top-title img {
-    max-width: 150px !important;
+    max-width: 75px !important;
   }
 }
 
