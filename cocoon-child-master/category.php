@@ -40,12 +40,12 @@ if (!$active_item) {
     $active_item = ['char' => mb_substr($cat_name, 0, 1), 'color' => $color, 'link' => '#'];
 }
 ?>
+<?php get_header(); ?>
 <style>
     :root {
         --page-color: var(--color-<?php echo $color; ?>);
     }
 </style>
-<?php get_header(); ?>
 
 <main style="text-align: center;">
     <!-- Grid -->

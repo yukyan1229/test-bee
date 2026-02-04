@@ -7,12 +7,12 @@ Template Name: Streaming Page
 $color = 'green';
 $cat_name = '配信';
 ?>
+<?php get_header(); ?>
 <style>
     :root {
         --page-color: var(--color-<?php echo $color; ?>);
     }
 </style>
-<?php get_header(); ?>
 
 <main style="max-width: 1000px; margin: 0 auto; padding-bottom: 4rem; padding-top: 8rem;">
 
