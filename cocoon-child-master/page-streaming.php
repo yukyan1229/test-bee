@@ -59,6 +59,7 @@ $cat_name = '配信';
 
 
     <!-- Vertical Title -->
+    <!--
     <div style="
             writing-mode: vertical-rl;
             position: fixed;
@@ -80,6 +81,7 @@ $cat_name = '配信';
         ">
         <?php echo $cat_name; ?>
     </div>
+    -->
 </main>
 
 <?php get_template_part('tmp-user/footer', 'custom'); ?>

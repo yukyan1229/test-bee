@@ -109,6 +109,7 @@ if (isset($titles[$slug])) {
     <?php endif; ?>
 
     <!-- Vertical Title -->
+    <!--
     <div style="
             writing-mode: vertical-rl;
             position: fixed;
@@ -130,6 +131,7 @@ if (isset($titles[$slug])) {
         ">
         <?php echo $cat_name; ?>
     </div>
+    -->
 </main>
 
 <?php get_template_part('tmp-user/footer', 'custom'); ?>

@@ -88,6 +88,7 @@ if (!$active_item) {
         <?php endif; ?>
     </div>
 
+    <!--
     <div style="
             writing-mode: vertical-rl;
             position: fixed;
@@ -109,6 +110,7 @@ if (!$active_item) {
         ">
         <?php single_cat_title(); ?>
     </div>
+    -->
 </main>
 
 <?php get_template_part('tmp-user/footer', 'custom'); ?>
