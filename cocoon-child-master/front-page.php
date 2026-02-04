@@ -14,7 +14,7 @@
             cursor: pointer;
             transition: transform 0.2s;
         ">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/beenice_logo.png" alt="bee-nice"
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/beenice_logo_orange.png" alt="bee-nice"
                 style="width: 100%; max-width: 75px; height: auto;">
         </h1>
 

@@ -3,8 +3,8 @@
 Template Name: Simple Page (Privacy Policy, etc.)
 */
 
-// Set Layout/Theme Color to Gray (Top Page Theme Color)
-$color = 'gray';
+// Set Layout/Theme Color to Orange (Matches Top Page Theme)
+$color = 'orange';
 ?>
 <?php get_header(); ?>
 

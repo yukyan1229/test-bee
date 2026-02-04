@@ -29,7 +29,7 @@ $colors = [
     'koishikiuchi' => 'yellow',
     'streaming' => 'green',
 ];
-$color = isset($colors[$slug]) ? $colors[$slug] : 'gray';
+$color = isset($colors[$slug]) ? $colors[$slug] : 'orange';
 
 // Override Title if it's a known category page acting as detail
 $titles = [
