@@ -284,9 +284,9 @@ h3 {
   /* Text "disappears" into the same-colored background */
 }
 
-/* Central Circle Hover Exception: Text becomes White */
+/* Central Circle Hover Exception: Text stays transparent */
 .central-circle:hover {
-  color: #fff !important;
+  color: transparent !important;
 }
 
 .circle-btn:hover .date {

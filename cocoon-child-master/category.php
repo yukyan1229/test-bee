@@ -70,9 +70,9 @@ if (!$active_item) {
                 ?>
                 <a href="<?php the_permalink(); ?>" class="circle-btn theme-<?php echo $slug; ?>"
                     style="--item-color: var(--color-<?php echo $color; ?>); background-color: var(--item-color); width: 70px; height: 70px;">
-                    <?php if ($is_latest): ?>
-                        <div class="rainbow-border"></div>
-                    <?php endif; ?>
+                    <?php /* if ($is_latest): ?>
+                           <div class="rainbow-border"></div>
+                       <?php endif; */ ?>
                     <span class="date">
                         <?php
                         // Extract suffix from slug (e.g. 'sakura-01' -> '01', 'talk_05' -> '05')

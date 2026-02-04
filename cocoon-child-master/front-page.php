@@ -109,9 +109,9 @@
                     <a href="<?php echo $item['link']; ?>" class="circle-btn theme-<?php echo $item['slug']; ?>"
                         style="--item-color: var(--color-<?php echo $item['color']; ?>); background-color: var(--item-color);"
                         <?php echo $target_attr; ?>>
-                        <?php if ($item['has_border']): ?>
-                            <div class="rainbow-border"></div>
-                        <?php endif; ?>
+                        <?php /* if ($item['has_border']): ?>
+                           <div class="rainbow-border"></div>
+                       <?php endif; */ ?>
                         <span class="date"><?php echo $item['char']; ?></span>
                     </a>
                 </div>
