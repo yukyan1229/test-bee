@@ -81,6 +81,8 @@ a {
   text-decoration: none;
   color: inherit;
   cursor: pointer;
+  /* Prevent tap highlight on mobile */
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Header Override */
@@ -567,7 +569,7 @@ h3 {
   height: 100%;
   background-color: rgba(255, 255, 255, 0.95);
   z-index: 3000;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   opacity: 0;
@@ -577,6 +579,7 @@ h3 {
 }
 
 .orbit-modal.active {
+  display: flex;
   opacity: 1;
   pointer-events: auto;
 }
@@ -606,6 +609,22 @@ h3 {
 /************************************
 ** レスポンシブデザイン用のメディアクエリ
 ************************************/
+/*1023px以下*/
+@media screen and (max-width: 1279px) {
+
+  /* Responsive Footer */
+  .footer-inner {
+    flex-direction: column-reverse;
+    /* Menu Top, Copyright Bottom */
+    gap: 1rem;
+  }
+
+  .footer-menu-items {
+    justify-content: center;
+    /* Center items on mobile */
+  }
+}
+
 /*1023px以下*/
 @media screen and (max-width: 1023px) {
   /*必要ならばここにコードを書く*/
@@ -859,20 +878,6 @@ h3 {
 .footer-copyright {
   font-size: 0.8rem;
   color: #000;
-}
-
-/* Responsive Footer */
-@media screen and (max-width: 768px) {
-  .footer-inner {
-    flex-direction: column-reverse;
-    /* Menu Top, Copyright Bottom */
-    gap: 1rem;
-  }
-
-  .footer-menu-items {
-    justify-content: center;
-    /* Center items on mobile */
-  }
 }
 
 /* Front Page Specific Layout */
