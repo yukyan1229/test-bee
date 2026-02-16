@@ -37,16 +37,6 @@ $cat_name = '配信';
             </svg>
         </a>
 
-        <!-- Amazon Music -->
-        <a href="https://music.amazon.co.jp/artists/B08NJ32WBS/%25E6%259C%25A8%25E5%2586%2585%25E7%25A7%2580%25E4%25BF%25A1"
-            target="_blank" rel="noopener noreferrer" class="streaming-card" title="Streaming: Amazon Music">
-            <span class="service-name">Amazon Music</span>
-            <svg class="arrow-icon" viewBox="0 0 24 24">
-                <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-            </svg>
-        </a>
-
         <!-- Spotify -->
         <a href="https://open.spotify.com/intl-ja/artist/6YCd58s2AOxXvgOxpp4CE6" target="_blank"
             rel="noopener noreferrer" class="streaming-card" title="Streaming: Spotify">
@@ -57,7 +47,55 @@ $cat_name = '配信';
             </svg>
         </a>
 
+        <!-- Amazon Music -->
+        <a href="https://music.amazon.co.jp/artists/B08NJ32WBS/%25E6%259C%25A8%25E5%2586%2585%25E7%25A7%2580%25E4%25BF%25A1"
+            target="_blank" rel="noopener noreferrer" class="streaming-card" title="Streaming: Amazon Music">
+            <span class="service-name">Amazon Music</span>
+            <svg class="arrow-icon" viewBox="0 0 24 24">
+                <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+        </a>
 
+        <!-- YouTube Music / Sakura no Hana -->
+        <a href="https://music.youtube.com/playlist?list=OLAK5uy_mUOiVW2MtqFqeTweawfqYCllq6fxNd1ps" target="_blank"
+            rel="noopener noreferrer" class="streaming-card" title="Streaming: YouTube Music">
+            <span class="service-name">YouTube Music</span>
+            <svg class="arrow-icon" viewBox="0 0 24 24">
+                <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+        </a>
+
+        <!-- LINE MUSIC -->
+        <a href="https://music.line.me/webapp/artist/mi0000000014306b10" target="_blank" rel="noopener noreferrer"
+            class="streaming-card" title="Streaming: LINE MUSIC">
+            <span class="service-name">LINE MUSIC</span>
+            <svg class="arrow-icon" viewBox="0 0 24 24">
+                <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+        </a>
+
+        <!-- AWA -->
+        <a href="https://s.awa.fm/artist/8c7a3d1ea0fef26ce572" target="_blank" rel="noopener noreferrer"
+            class="streaming-card" title="Streaming: AWA">
+            <span class="service-name">AWA</span>
+            <svg class="arrow-icon" viewBox="0 0 24 24">
+                <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+        </a>
+
+        <!-- KKBOX -->
+        <a href="https://www.kkbox.com/jp/ja/artist/HXxvKSKf8cmeGHQ7j7" target="_blank" rel="noopener noreferrer"
+            class="streaming-card" title="Streaming: KKBOX">
+            <span class="service-name">KKBOX</span>
+            <svg class="arrow-icon" viewBox="0 0 24 24">
+                <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+        </a>
     </div>
 
 

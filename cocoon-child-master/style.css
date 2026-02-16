@@ -501,6 +501,10 @@ h3 {
 }
 
 /* Responsive */
+.sp-br {
+  display: none;
+}
+
 @media (max-width: 600px) {
   header {
     padding: 1rem;
@@ -508,6 +512,10 @@ h3 {
 
   main {
     padding: 2.5rem;
+  }
+
+  .sp-br {
+    display: block;
   }
 }
 
