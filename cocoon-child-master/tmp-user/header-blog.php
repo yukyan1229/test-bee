@@ -2,15 +2,15 @@
 // ヘッダー (BLOGコンテキスト用)
 ?>
 <header class="custom-header">
-    <!-- Left: LIVE Link -->
+    <!-- Left: LIVE Top Link -->
     <a href="<?php echo home_url('/'); ?>"
         style="display: flex; align-items: center; justify-content: center; height: 44px; font-weight: bold; font-size: 1rem;">
-        LIVEのお知らせ
+        bee-nice
     </a>
 
     <!-- Center: Blog Title -->
-    <a href="https://bee-nice.jugem.jp/" target="_blank" rel="noopener noreferrer">
-        <?php bloginfo('name'); ?>
+    <a href="<?php echo home_url('/blog/'); ?>">
+        LIFE IS BEAUTIFUL
     </a>
 
     <!-- Right: X Link -->

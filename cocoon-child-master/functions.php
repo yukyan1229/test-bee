@@ -48,6 +48,11 @@ add_action('wp_enqueue_scripts', 'cocoon_child_enqueue_scripts');
 // 4. コンテキスト判定用関数 (LIVE vs BLOG)
 function cocoon_child_is_live_context()
 {
+    // /blog/ 固定ページはBLOGコンテキスト(false)
+    if (is_page('blog')) {
+        return false;
+    }
+    
     // フロントページ、詳細ページ(固定ページ)、特定のカテゴリー(LIVE関連)の場合はLIVEコンテキスト
     if (is_front_page() || is_page()) {
         return true;
@@ -294,6 +299,41 @@ function cocoon_child_add_theme_body_class($classes)
     return $classes;
 }
 add_filter('body_class', 'cocoon_child_add_theme_body_class');
+
+// 14. お仕事情報のカスタム投稿タイプとタクソノミー登録
+function cocoon_child_register_work_post_type() {
+    register_post_type('work', [
+        'labels' => [
+            'name' => 'お仕事情報',
+            'singular_name' => 'お仕事情報',
+        ],
+        'public' => true,
+        'has_archive' => true,
+        'menu_position' => 6, // 投稿の下あたり
+        'menu_icon' => 'dashicons-portfolio',
+        'supports' => ['title', 'editor', 'thumbnail', 'excerpt'],
+        'show_in_rest' => true, // ブロックエディタ(Gutenberg)有効化
+    ]);
+
+    register_taxonomy('media_type', 'work', [
+        'labels' => [
+            'name' => '配信媒体',
+            'singular_name' => '配信媒体',
+        ],
+        'hierarchical' => true, // カテゴリ形式（階層あり）
+        'show_in_rest' => true,
+    ]);
+}
+add_action('init', 'cocoon_child_register_work_post_type');
+
+// 15. Swiper.jsの読み込み (ブログ記事/single.phpでのみ読み込む)
+function cocoon_child_enqueue_swiper() {
+    if (is_single()) {
+        wp_enqueue_style('swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css', [], '11');
+        wp_enqueue_script('swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', [], '11', true);
+    }
+}
+add_action('wp_enqueue_scripts', 'cocoon_child_enqueue_swiper');
 
 // Previous standard calls
 add_action('init', 'cocoon_child_register_menus');

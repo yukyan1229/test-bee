@@ -2,11 +2,8 @@
 // ヘッダー (LIVEコンテキスト用)
 ?>
 <header class="custom-header">
-    <!-- Left: Blog Link -->
-    <a href="https://bee-nice.jugem.jp/" target="_blank" rel="noopener noreferrer"
-        style="display: flex; align-items: center; justify-content: center; height: 44px; font-weight: bold; font-size: 1rem;">
-        <!-- img src="<?php echo get_stylesheet_directory_uri(); ?>/images/blog_logo.png" alt="BLOG"
-            style="height: 25px; width: auto;" -->
+    <!-- Left: (Empty, as requested) -->
+    <a href="#" style="visibility: hidden; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px;">
     </a>
 
     <!-- Center: LIVE -->

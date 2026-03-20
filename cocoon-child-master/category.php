@@ -24,7 +24,7 @@ $orbit_items = [
     ['slug' => 'koishikiuchi', 'char' => 'コ', 'color' => 'yellow', 'link' => home_url('/koishikiuchi/')],
     ['slug' => 'streaming', 'char' => '配', 'color' => 'green', 'link' => home_url('/streaming/')],
     // ['slug' => 'goods', 'char' => 'グ', 'color' => 'red', 'link' => 'https://bee6940.base.shop/', 'target' => '_blank'],
-    ['slug' => 'blog', 'char' => 'B', 'color' => 'gray', 'link' => 'https://bee-nice.jugem.jp/', 'target' => '_blank'],
+    ['slug' => 'blog', 'char' => 'B', 'color' => 'gray', 'link' => home_url('/blog/')],
 ];
 
 // Determine Center Item from Slug (approximate)
