@@ -3,25 +3,37 @@
 // Maps categories to colors and displays child Pages as a grid
 
 $cat = get_queried_object();
-$slug = $cat->slug;
-$cat_name = $cat->name;
+
+// Null Object へのアクセスエラー(Warning/Fatal Error)回避のための安全な取得
+$slug = 'default';
+$cat_name = '';
+
+if ($cat instanceof WP_Term) {
+    $slug = $cat->slug;
+    $cat_name = $cat->name;
+} else {
+    // 完全に記事がないカテゴリなどで get_queried_object() が正常にオブジェクトを返さない場合のフォールバック
+    $slug = get_query_var('category_name') ?: 'default';
+    $term = get_term_by('slug', $slug, 'category');
+    $cat_name = $term ? $term->name : $slug;
+}
 
 // Color Mapping
 $colors = [
-    'talk' => 'orange',
+    'talk' => 'yellowgreen',
     'sakura' => 'pink',
-    'nomaki' => 'blue',
-    'koishikiuchi' => 'yellow',
+    'nomaki' => 'turquoise',
+    'koishikiuchi' => 'mustard',
     'streaming' => 'green',
 ];
 $color = isset($colors[$slug]) ? $colors[$slug] : 'gray';
 
 // Define Orbit Items for Modal (Dynamic Active State)
 $orbit_items = [
-    ['slug' => 'talk', 'char' => 'ト', 'color' => 'orange', 'link' => home_url('/talk/')],
+    ['slug' => 'talk', 'char' => 'ト', 'color' => 'yellowgreen', 'link' => home_url('/talk/')],
     ['slug' => 'sakura', 'char' => '桜', 'color' => 'pink', 'link' => home_url('/sakura/')],
-    ['slug' => 'nomaki', 'char' => 'の', 'color' => 'blue', 'link' => home_url('/nomaki/')],
-    ['slug' => 'koishikiuchi', 'char' => 'コ', 'color' => 'yellow', 'link' => home_url('/koishikiuchi/')],
+    ['slug' => 'nomaki', 'char' => 'の', 'color' => 'turquoise', 'link' => home_url('/nomaki/')],
+    ['slug' => 'koishikiuchi', 'char' => 'コ', 'color' => 'mustard', 'link' => home_url('/koishikiuchi/')],
     ['slug' => 'streaming', 'char' => '配', 'color' => 'green', 'link' => home_url('/streaming/')],
     // ['slug' => 'goods', 'char' => 'グ', 'color' => 'red', 'link' => 'https://bee6940.base.shop/', 'target' => '_blank'],
     ['slug' => 'blog', 'char' => 'B', 'color' => 'gray', 'link' => home_url('/blog/')],

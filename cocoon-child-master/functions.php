@@ -66,40 +66,11 @@ function cocoon_child_is_live_context()
     return false;
 }
 
-// 5. メニュー項目の表示判定 (投稿がない場合は非表示)
+// 5. メニュー項目の表示判定 (投稿がなくても常時表示するよう変更)
 function cocoon_child_is_menu_item_visible($slug, $type = 'category')
 {
-    // 外部サイトなどは常に表示
-    if ($type === 'external' || $slug === 'blog' || $slug === 'goods') {
-        return true;
-    }
-
-    // カテゴリーの場合：投稿数(固定ページ含む)が1以上か判定
-    if ($type === 'category') {
-        // term->count は「投稿」のみで固定ページを含まない場合があるため、WP_Queryで実数チェック
-        $args = [
-            'post_type' => ['post', 'page'],
-            'category_name' => $slug,
-            'post_status' => 'publish',
-            'posts_per_page' => 1,
-            'fields' => 'ids', // IDのみ取得で高速化
-            'no_found_rows' => true // 行数計算不要
-        ];
-        $query = new WP_Query($args);
-        if ($query->have_posts()) {
-            return true;
-        }
-    }
-
-    // 固定ページの場合 (streamingなど)：公開済みページが存在するか
-    if ($type === 'page') {
-        $page = get_page_by_path($slug, OBJECT, 'page');
-        if ($page && $page->post_status === 'publish') {
-            return true;
-        }
-    }
-
-    return false;
+    // ご要望により、すべてのカテゴリ・ページへのリンクを常に表示します
+    return true;
 }
 
 // 6. 本文内のURLを自動でリンクにする
@@ -272,10 +243,10 @@ function cocoon_child_get_theme_context()
 
     // カラーマッピング
     $colors = [
-        'talk' => 'orange',
+        'talk' => 'yellowgreen',
         'sakura' => 'pink',
-        'nomaki' => 'blue',
-        'koishikiuchi' => 'yellow',
+        'nomaki' => 'turquoise',
+        'koishikiuchi' => 'mustard',
         'streaming' => 'green',
         'blog' => 'gray', // default
     ];

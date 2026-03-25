@@ -23,13 +23,13 @@ if (!empty($cats)) {
 
 // Color Mapping
 $colors = [
-    'talk' => 'orange',
+    'talk' => 'yellowgreen',
     'sakura' => 'pink',
-    'nomaki' => 'blue',
-    'koishikiuchi' => 'yellow',
+    'nomaki' => 'turquoise',
+    'koishikiuchi' => 'mustard',
     'streaming' => 'green',
 ];
-$color = isset($colors[$slug]) ? $colors[$slug] : 'orange';
+$color = isset($colors[$slug]) ? $colors[$slug] : 'yellowgreen';
 
 // Override Title if it's a known category page acting as detail
 $titles = [

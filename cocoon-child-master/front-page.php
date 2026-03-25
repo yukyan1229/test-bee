@@ -31,7 +31,7 @@
                     'slug' => 'talk',
                     'type' => 'category',
                     'char' => 'ト',
-                    'color' => 'orange',
+                    'color' => 'yellowgreen',
                     'link' => home_url('/talk/'),
                     'delay' => '0s',
                     'has_border' => ($latest_cat_slug === 'talk')
@@ -49,7 +49,7 @@
                     'slug' => 'nomaki',
                     'type' => 'category',
                     'char' => 'の',
-                    'color' => 'blue',
+                    'color' => 'turquoise',
                     'link' => home_url('/nomaki/'),
                     'delay' => '-1s',
                     'has_border' => ($latest_cat_slug === 'nomaki')
@@ -58,7 +58,7 @@
                     'slug' => 'koishikiuchi',
                     'type' => 'category',
                     'char' => 'コ',
-                    'color' => 'yellow',
+                    'color' => 'mustard',
                     'link' => home_url('/koishikiuchi/'),
                     'delay' => '-1.5s',
                     'has_border' => ($latest_cat_slug === 'koishikiuchi')

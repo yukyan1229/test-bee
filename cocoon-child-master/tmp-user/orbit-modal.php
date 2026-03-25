@@ -26,10 +26,10 @@ if (is_home() || is_single() || is_page('blog')) {
 // Orbit Items Configuration
 $orbit_items_raw = [
     ['slug' => 'home', 'type' => 'external', 'char' => 'H', 'color' => 'orange', 'link' => home_url('/')],
-    ['slug' => 'talk', 'type' => 'category', 'char' => 'ト', 'color' => 'orange', 'link' => home_url('/talk/')],
+    ['slug' => 'talk', 'type' => 'category', 'char' => 'ト', 'color' => 'yellowgreen', 'link' => home_url('/talk/')],
     ['slug' => 'sakura', 'type' => 'category', 'char' => '桜', 'color' => 'pink', 'link' => home_url('/sakura/')],
-    ['slug' => 'nomaki', 'type' => 'category', 'char' => 'の', 'color' => 'blue', 'link' => home_url('/nomaki/')],
-    ['slug' => 'koishikiuchi', 'type' => 'category', 'char' => 'コ', 'color' => 'yellow', 'link' => home_url('/koishikiuchi/')],
+    ['slug' => 'nomaki', 'type' => 'category', 'char' => 'の', 'color' => 'turquoise', 'link' => home_url('/nomaki/')],
+    ['slug' => 'koishikiuchi', 'type' => 'category', 'char' => 'コ', 'color' => 'mustard', 'link' => home_url('/koishikiuchi/')],
     ['slug' => 'streaming', 'type' => 'page', 'char' => '配', 'color' => 'green', 'link' => home_url('/streaming/')],
     ['slug' => 'blog', 'type' => 'external', 'char' => 'B', 'color' => 'gray', 'link' => home_url('/blog/')],
 ];
