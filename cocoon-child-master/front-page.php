@@ -89,9 +89,10 @@
                     'type' => 'external',
                     'char' => 'B',
                     'color' => 'gray',
-                    'link' => home_url('/blog/'),
+                    'link' => 'https://bee-nice.jugem.jp/',
                     'delay' => '-3s',
-                    'has_border' => false
+                    'has_border' => false,
+                    'target' => '_blank'
                 ]
             ];
 

@@ -31,7 +31,8 @@ $orbit_items_raw = [
     ['slug' => 'nomaki', 'type' => 'category', 'char' => 'の', 'color' => 'turquoise', 'link' => home_url('/nomaki/')],
     ['slug' => 'koishikiuchi', 'type' => 'category', 'char' => 'コ', 'color' => 'mustard', 'link' => home_url('/koishikiuchi/')],
     ['slug' => 'streaming', 'type' => 'page', 'char' => '配', 'color' => 'green', 'link' => home_url('/streaming/')],
-    ['slug' => 'blog', 'type' => 'external', 'char' => 'B', 'color' => 'gray', 'link' => home_url('/blog/')],
+    // ['slug' => 'goods', 'type' => 'external', 'char' => 'グ', 'color' => 'red', 'link' => 'https://bee6940.base.shop/', 'target' => '_blank'],
+    ['slug' => 'blog', 'type' => 'external', 'char' => 'B', 'color' => 'gray', 'link' => 'https://bee-nice.jugem.jp/', 'target' => '_blank'],
 ];
 
 // 1. Determine Active Item
