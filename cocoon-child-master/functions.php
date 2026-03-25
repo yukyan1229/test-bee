@@ -326,14 +326,7 @@ function cocoon_child_register_work_post_type() {
 }
 add_action('init', 'cocoon_child_register_work_post_type');
 
-// 15. Swiper.jsの読み込み (ブログ記事/single.phpでのみ読み込む)
-function cocoon_child_enqueue_swiper() {
-    if (is_single()) {
-        wp_enqueue_style('swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css', [], '11');
-        wp_enqueue_script('swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', [], '11', true);
-    }
-}
-add_action('wp_enqueue_scripts', 'cocoon_child_enqueue_swiper');
+// 15. (Removed Swiper.js enqueue)
 
 // Previous standard calls
 add_action('init', 'cocoon_child_register_menus');

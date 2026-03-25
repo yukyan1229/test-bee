@@ -1,16 +1,6 @@
 <?php
-// page-blog.php - Blog Archive Page Template (Automatically applies to page with slug "blog")
+// home.php - Blog Posts Index Template
 get_header(); 
-
-// ブログ記事（post）の取得用カスタムクエリ
-$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-$args = array(
-    'post_type'      => 'post',
-    'post_status'    => 'publish',
-    'posts_per_page' => 10,
-    'paged'          => $paged
-);
-$blog_query = new WP_Query($args);
 ?>
 
 <style>
@@ -38,7 +28,7 @@ $blog_query = new WP_Query($args);
         margin: 0;
         padding-bottom: 0.8rem;
         border-bottom: 1px solid #ddd;
-        background: transparent !important;
+        background: transparent !important; /* Force override */
         line-height: 1.5;
     }
     .blog-item-title a {
@@ -83,9 +73,9 @@ $blog_query = new WP_Query($args);
             BLOG
         </h1>
         
-        <?php if ($blog_query->have_posts()) : ?>
+        <?php if (have_posts()) : ?>
             <ul class="blog-list">
-                <?php while ($blog_query->have_posts()) : $blog_query->the_post(); ?>
+                <?php while (have_posts()) : the_post(); ?>
                     <li class="blog-item">
                         <div class="blog-item-date"><?php the_time('Y.m.d'); ?></div>
                         <div class="blog-item-title">
@@ -99,16 +89,12 @@ $blog_query = new WP_Query($args);
             <div class="pagination">
                 <?php 
                 echo paginate_links([
-                    'total'     => $blog_query->max_num_pages,
-                    'current'   => $paged,
                     'prev_text' => '&laquo; 前へ',
                     'next_text' => '次へ &raquo;',
                     'type'      => 'plain',
                 ]); 
                 ?>
             </div>
-            
-            <?php wp_reset_postdata(); ?>
             
         <?php else : ?>
             <p style="text-align:center; color:#999; padding: 4rem 0;">記事がありません。</p>

@@ -8,7 +8,9 @@ if (is_front_page()) {
     return; // Do not display on Front Page
 }
 
-if (is_category()) {
+if (is_home() || is_single() || is_page('blog')) {
+    $slug = 'blog';
+} elseif (is_category()) {
     $slug = get_queried_object()->slug;
 } elseif (is_page()) {
     $cats = get_the_category();
@@ -23,12 +25,12 @@ if (is_category()) {
 
 // Orbit Items Configuration
 $orbit_items_raw = [
+    ['slug' => 'home', 'type' => 'external', 'char' => 'H', 'color' => 'orange', 'link' => home_url('/')],
     ['slug' => 'talk', 'type' => 'category', 'char' => 'ト', 'color' => 'orange', 'link' => home_url('/talk/')],
     ['slug' => 'sakura', 'type' => 'category', 'char' => '桜', 'color' => 'pink', 'link' => home_url('/sakura/')],
     ['slug' => 'nomaki', 'type' => 'category', 'char' => 'の', 'color' => 'blue', 'link' => home_url('/nomaki/')],
     ['slug' => 'koishikiuchi', 'type' => 'category', 'char' => 'コ', 'color' => 'yellow', 'link' => home_url('/koishikiuchi/')],
     ['slug' => 'streaming', 'type' => 'page', 'char' => '配', 'color' => 'green', 'link' => home_url('/streaming/')],
-    // ['slug' => 'goods', 'type' => 'external', 'char' => 'グ', 'color' => 'red', 'link' => 'https://bee6940.base.shop/', 'target' => '_blank'],
     ['slug' => 'blog', 'type' => 'external', 'char' => 'B', 'color' => 'gray', 'link' => home_url('/blog/')],
 ];
 

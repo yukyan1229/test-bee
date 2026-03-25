@@ -4,8 +4,8 @@
 <header class="custom-header">
     <!-- Left: LIVE Top Link -->
     <a href="<?php echo home_url('/'); ?>"
-        style="display: flex; align-items: center; justify-content: center; height: 44px; font-weight: bold; font-size: 1rem;">
-        bee-nice
+        style="display: flex; align-items: center; justify-content: center; height: 44px; padding: 0 10px;">
+        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/beenice_logo_orange.png" alt="bee-nice" style="height: 25px; width: auto; object-fit: contain;">
     </a>
 
     <!-- Center: Blog Title -->
