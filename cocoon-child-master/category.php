@@ -79,9 +79,10 @@ if (!$active_item) {
             <?php while (have_posts()):
                 the_post();
                 $is_latest = (get_the_ID() === $latest_id);
+                $has_content = trim(get_post()->post_content) !== '';
                 ?>
-                <a href="<?php the_permalink(); ?>" class="circle-btn theme-<?php echo $slug; ?>"
-                    style="--item-color: var(--color-<?php echo $color; ?>); background-color: var(--item-color); width: 70px; height: 70px;">
+                <<?php echo $has_content ? 'a href="' . get_permalink() . '"' : 'div'; ?> class="circle-btn theme-<?php echo $slug; ?>"
+                    style="--item-color: var(--color-<?php echo $color; ?>); background-color: var(--item-color); width: 70px; height: 70px; <?php echo !$has_content ? 'opacity: 0.5; pointer-events: none; cursor: default;' : ''; ?>">
                     <?php /* if ($is_latest): ?>
                            <div class="rainbow-border"></div>
                        <?php endif; */ ?>
@@ -98,7 +99,7 @@ if (!$active_item) {
                         echo esc_html($display_text);
                         ?>
                     </span>
-                </a>
+                </<?php echo $has_content ? 'a' : 'div'; ?>>
             <?php endwhile; ?>
         <?php else: ?>
             <p>記事が見つかりませんでした。</p>
