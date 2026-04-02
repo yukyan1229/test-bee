@@ -66,12 +66,63 @@ function cocoon_child_is_live_context()
     return false;
 }
 
-// 5. メニュー項目の表示判定 (投稿がなくても常時表示するよう変更)
+// 5. メニュー項目の表示判定 (投稿がある場合のみ表示する状態に戻す)
 function cocoon_child_is_menu_item_visible($slug, $type = 'category')
 {
-    // ご要望により、すべてのカテゴリ・ページへのリンクを常に表示します
-    return true;
+    if ($type === 'external') {
+        return true;
+    }
+
+    if ($type === 'page') {
+        $page = get_page_by_path($slug);
+        return $page && $page->post_status === 'publish';
+    }
+
+    // カテゴリーに公開された記事(固定ページ含む)が含まれるかチェック
+    $args = [
+        'post_type' => ['post', 'page'],
+        'post_status' => 'publish',
+        'posts_per_page' => 1,
+        'tax_query' => [
+            [
+                'taxonomy' => 'category',
+                'field' => 'slug',
+                'terms' => $slug,
+            ],
+        ],
+    ];
+    $query = new WP_Query($args);
+    return $query->have_posts();
 }
+
+// 5.1 記事がないカテゴリーページヘ直接アクセスした場合はトップページへリダイレクト
+function cocoon_child_redirect_empty_categories()
+{
+    if (is_category()) {
+        $cat = get_queried_object();
+        if ($cat instanceof WP_Term) {
+            $slug = $cat->slug;
+            $args = [
+                'post_type' => ['post', 'page'],
+                'post_status' => 'publish',
+                'posts_per_page' => 1,
+                'tax_query' => [
+                    [
+                        'taxonomy' => 'category',
+                        'field' => 'slug',
+                        'terms' => $slug,
+                    ],
+                ],
+            ];
+            $query = new WP_Query($args);
+            if (!$query->have_posts()) {
+                wp_redirect(home_url());
+                exit;
+            }
+        }
+    }
+}
+add_action('template_redirect', 'cocoon_child_redirect_empty_categories');
 
 // 6. 本文内のURLを自動でリンクにする
 add_filter('the_content', 'make_clickable');

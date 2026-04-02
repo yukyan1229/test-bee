@@ -62,11 +62,27 @@ if (isset($titles[$slug])) {
             <div class="detail-content">
                 <!-- Title Section -->
                 <div style="text-align: left; margin-bottom: 2rem; color:#666666;">
-                    <!-- Optional: NEW Mark logic -->
+                    <!-- NEW Mark logic (Category Latest) -->
                     <?php
-                    $latest_info = cocoon_child_get_latest_content_info();
-                    $latest_id = $latest_info ? $latest_info['id'] : 0;
-                    if (get_the_ID() === $latest_id):
+                    $cat_args = [
+                        'post_type'      => ['post', 'page'],
+                        'post_status'    => 'publish',
+                        'posts_per_page' => 1,
+                        'tax_query'      => [
+                            [
+                                'taxonomy' => 'category',
+                                'field'    => 'slug',
+                                'terms'    => $slug,
+                            ],
+                        ],
+                        'orderby'        => 'date',
+                        'order'          => 'DESC',
+                        'fields'         => 'ids',
+                    ];
+                    $cat_query = new WP_Query($cat_args);
+                    $latest_id_in_cat = (!empty($cat_query->posts)) ? $cat_query->posts[0] : 0;
+
+                    if (get_the_ID() === $latest_id_in_cat):
                         ?>
                         <span class="new-mark">NEW</span>
                     <?php endif; ?>
