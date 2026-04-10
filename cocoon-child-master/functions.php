@@ -353,3 +353,42 @@ add_action('init', 'cocoon_child_register_work_post_type');
 // Previous standard calls
 add_action('init', 'cocoon_child_register_menus');
 add_action('init', 'cocoon_child_add_rewrite_rules');
+
+// 16. 固定ページ用サブタイトルメタボックスの追加
+function cocoon_child_add_subtitle_metabox() {
+    add_meta_box(
+        'cocoon_child_subtitle',      // Unique ID
+        'サブタイトル',               // Box title
+        'cocoon_child_subtitle_html', // Content callback
+        'page',                       // Post type
+        'normal',                     // Context
+        'high'                        // Priority
+    );
+}
+add_action('add_meta_boxes', 'cocoon_child_add_subtitle_metabox');
+
+function cocoon_child_subtitle_html($post) {
+    $value = get_post_meta($post->ID, '_subtitle', true);
+    wp_nonce_field('cocoon_child_subtitle_nonce', 'subtitle_nonce');
+    ?>
+    <p>固定ページのタイトルの下に表示するサブタイトルを入力してください。（空欄の場合は表示されません）</p>
+    <input type="text" name="page_subtitle" id="page_subtitle" style="width:100%; max-width:800px; padding:8px;" value="<?php echo esc_attr($value); ?>" />
+    <?php
+}
+
+function cocoon_child_save_subtitle($post_id) {
+    if (!isset($_POST['subtitle_nonce']) || !wp_verify_nonce($_POST['subtitle_nonce'], 'cocoon_child_subtitle_nonce')) {
+        return;
+    }
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+    if (!current_user_can('edit_page', $post_id)) {
+        return;
+    }
+    
+    if (isset($_POST['page_subtitle'])) {
+        update_post_meta($post_id, '_subtitle', sanitize_text_field($_POST['page_subtitle']));
+    }
+}
+add_action('save_post', 'cocoon_child_save_subtitle');

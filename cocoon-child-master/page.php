@@ -87,9 +87,16 @@ if (isset($titles[$slug])) {
                         <span class="new-mark">NEW</span>
                     <?php endif; ?>
 
+                    <?php 
+                    $subtitle = get_post_meta(get_the_ID(), '_subtitle', true);
+                    if (!empty($subtitle)): 
+                    ?>
+                        <div class="page-subtitle" style="color: #333; margin-bottom: 0.2rem; font-weight: 500;">
+                            <?php echo esc_html($subtitle); ?>
+                        </div>
+                    <?php endif; ?>
                     <!-- Main Title -->
-                    <h2 style="font-size: 2rem; margin: 1rem 0; background: none; color: #333; padding: 0;">
-
+                    <h2 style="font-size: 2rem; margin: 0 0 1.5rem 0; background: none; color: #333; padding: 0;">
                         <?php the_title(); ?>
                     </h2>
                     <!-- Note to User: Use <div class="summary-box">...</div> for the top summary in the editor -->
